@@ -5,3 +5,5 @@ Makefile
 RShell
 stringParseTest
 lib/
+CMakeLists.txt.user
+translateMain

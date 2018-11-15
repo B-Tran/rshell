@@ -9,7 +9,8 @@ std::string StringParser::get_token(std::string & input)
     //getting the first token in the list by looking for the first delimiter
     for(size_t i = 0; i < delimList.size(); ++i)
     {
-//        std::cout << "finding delim list: " << input.find(delimList.at(i)) << "\n";
+//        std::cout << "finding delim list: " << input.find(delimList.at(i))
+//        << "\n";
         if((input.find(delimList.at(i)) < input.size()) &&
                 (input.find(delimList.at(i)) < pos))
         {
@@ -42,7 +43,8 @@ std::string StringParser::get_token(std::string & input)
     return token;
 }
 
-void StringParser::get_delim(std::vector<std::string>& tokenList, std::string& input)
+void StringParser::get_delim(std::vector<std::string>& tokenList,
+		std::string& input)
 {
     size_t pos;
     //looks for all delimiters that are at the beginning of the parsed input
@@ -70,7 +72,8 @@ size_t StringParser::found_begin_delim(const std::string & input)
 
     for(size_t i = 0; i < delimList.size(); ++i)
     {
-//        std::cout << "checking for finding: " << (input.find(delimList.at(i))) << "\n";
+//        std::cout << "checking for finding: " << 
+//        (input.find(delimList.at(i))) << "\n";
         if(input.find(delimList.at(i)) == 0)
         {
 //            std::cout << "found delim: " << i << "\n";
@@ -99,7 +102,8 @@ StringParser::StringParser()
 
 }
 
-StringParser::StringParser(std::vector<std::string> dList, std::vector<std::string> dIList)
+StringParser::StringParser(std::vector<std::string> dList,
+		std::vector<std::string> dIList)
 {
     delimList = dList;
     delimIgnList = dIList;

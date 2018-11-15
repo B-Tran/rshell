@@ -12,6 +12,12 @@ ADD_EXECUTABLE(stringParseTest
 	"src/stringParser.cpp"
 )
 
+ADD_EXECUTABLE(translateMain
+	"src/translateMain.cpp"
+	"src/cmdTranslator.cpp"
+	"src/stringParser.cpp"
+)
+
 TARGET_LINK_LIBRARIES(stringParseTest gmock)
 TARGET_LINK_LIBRARIES(stringParseTest gtest)
 TARGET_COMPILE_DEFINITIONS(stringParseTest PRIVATE gtest_disable_pthreads=ON)

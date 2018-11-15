@@ -1,25 +1,27 @@
 #include <iostream>
 #include "stringParser.h"
-using namespace std;
 
 int main()
 {
-    vector<string> dList;
-    vector<string> dIList;
+    std::vector<std::string> dList;
+    std::vector<std::string> dIList;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
+    dList.push_back("#");
     dIList.push_back(" ");
     StringParser parsing(dList,dIList);
-    string input;
-    vector<string> tokens;
+    std::string input;
+    std::vector<std::string> tokens;
 
-    cout << "$ ";
-    getline(cin,input);
+    std::cout << "$ ";
+    getline(std::cin,input);
     tokens = parsing.parse_string(input);
     for(size_t i = 0 ; i < tokens.size(); ++i)
     {
-        cout << tokens.at(i) << "\n";
+	    std::cout << tokens.at(i) << "\n";
     }
+    
+    
 }

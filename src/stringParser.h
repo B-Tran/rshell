@@ -26,7 +26,8 @@ private:
 
 public:
     StringParser();
-    StringParser(std::vector<std::string> dList, std::vector<std::string> dIList);
+    StringParser(std::vector<std::string> dList,
+		    std::vector<std::string> dIList);
     ~StringParser();
 
     //adds a delimiter that we will use to parse
