@@ -4,4 +4,5 @@ project(RShell)
 add_executable(${PROJECT_NAME} 
 	"src/main.cpp" 
 	"src/stringParser.cpp"
+	"src/CMD.cpp"
 	)

@@ -46,7 +46,7 @@ void StringParser::get_delim(std::vector<std::string>& tokenList, std::string& i
 {
     size_t pos;
     //looks for all delimiters that are at the beginning of the parsed input
-    //ane either removes them from the parsed input or adds them as a token
+    //and either removes them from the parsed input or adds them as a token
     pos = found_begin_delim(input);
 //    std::cout << "pos in geting delim: " << pos << "\n";
     while (pos < delimList.size())
