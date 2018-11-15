@@ -1,29 +1,28 @@
-#include <iostream>
-#include <vector>
-#include "stringParser.h"
 #include "CMDLine.h" // Base class
 #include "CMD.h" 
 #include "unistd.h"
+#include "stringParser.h"
 #include <sys/types.h>
 #include <sys/wait.h>  // wait  
 #include <limits.h> // HOST_Name_MAX
 
 
-using namespace std;
+
 
 int main()
 {
-    vector<string> dList;
-    vector<string> dIList;
+    std::vector<std::string> dList;
+    std::vector<std::string> dIList;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
+    dList.push_back("#");
     dIList.push_back(" ");
     StringParser parsing(dList,dIList);
-    string input;
-    vector<string> tokens;
-     string theLogin = string();
+    std::string input;
+    std::vector<std::string> tokens;
+     std::string theLogin = std::string();
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value defined in limits.h
     bool run = true;
 
@@ -50,11 +49,11 @@ int main()
     {
         if (getlogin() != NULL)
         {
-            cout << theLogin << "@" << theHost;
+            std::cout << theLogin << "@" << theHost;
         }
 
-        cout << "$: ";
-        getline(cin, input);
+        std::cout << "$: ";
+        std::getline(std::cin, input);
         tokens = parsing.parse_string(input);
         theTest->addArguments(tokens);
            run = theTest->execute();
@@ -62,15 +61,11 @@ int main()
     } // end of while loop
 
 
+
     for(size_t i = 0 ; i < tokens.size(); ++i)
     {
-        cout << tokens.at(i) << "\n";
+	    std::cout << tokens.at(i) << "\n";
     }
 
 
-
-
-
-
-  return 0;
 }

@@ -3,3 +3,8 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 RShell
+stringParseTest
+lib/
+CMakeLists.txt.user
+translateMain
+.vscode/
