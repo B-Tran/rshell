@@ -18,5 +18,12 @@ Semicolon::~Semicolon()
 bool Semicolon::execute()
 { 
     left->execute();
-    if(right){ return right->execute(); }
+    if(right)
+    { 
+        return right->execute(); 
+    }
+    else
+    {
+        return true;
+    }
 }

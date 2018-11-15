@@ -37,7 +37,7 @@ int main()
     CMDTranslator translator;
     try {
         toExecute = translator.translate(tokens,allocatedCommands);
-    } catch (const char * e) {
+    } catch (const std::string e) {
         std::cout << e;
     }
     if(toExecute)

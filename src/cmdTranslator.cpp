@@ -96,6 +96,13 @@ CMDLine * CMDTranslator::translate(std::vector<std::string> tokenList,
     std::vector<CMDLine *> items;
     Connector * temp = nullptr;
 	
+    if(is_Connector(tokenList.front()))
+    {
+        const std::string error = 
+        "Error : -bash: syntax error near unexpected token "
+         + tokenList.front() +"\n";
+        throw error;
+    }
 //	bool isAConnector = false;			//checks if the last item was a
 										//connector
 										
@@ -129,7 +136,10 @@ CMDLine * CMDTranslator::translate(std::vector<std::string> tokenList,
             else
             {
 //                std::cout << "in throw\n";
-                throw "Error: invalid command statement\n";
+                const std::string error2 = 
+                "Error : -bash: syntax error near unexpected token " 
+                + tokenList.front() +"\n";
+                throw error2;
             }
         }
         else
