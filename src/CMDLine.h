@@ -6,9 +6,10 @@
 class CMDLine
 {
   public:
-    CMDLine() {}
-    ~CMDLine() {}
+    CMDLine();
+    virtual ~CMDLine() = 0;
     virtual bool execute() = 0;
 };
+
 
 #endif

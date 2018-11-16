@@ -17,14 +17,14 @@ CMD::CMD(CMDLine *commandArg)
  }
 CMD::~CMD()
 {
- 
- for (int i=0; i < argumentCount ; i++)
- {
-   delete [] argumentList[i];
- }
-delete [] argumentList;
 
-argumentCount = 0;
+    for (int i=0; i < argumentCount ; i++)
+    {
+        delete [] argumentList[i];
+    }
+    delete [] argumentList;
+
+    argumentCount = 0;
 }
 void CMD::addArguments(std::vector<std::string> theArugments)
 {
@@ -32,7 +32,7 @@ void CMD::addArguments(std::vector<std::string> theArugments)
    //delete the current argumetn list
    if(argumentList)
    {
-      std::cout << "in here!\n";
+//      std::cout << "in here!\n";
       for (int i=0; i < argumentCount ; i++)
       {
          delete [] argumentList[i];
@@ -44,9 +44,9 @@ void CMD::addArguments(std::vector<std::string> theArugments)
     argumentList = new char*[theArugments.size()+1];
             argumentCount = theArugments.size()+1;
 
-    std::cout << "Argument size: " << theArugments.size() << std::endl;
+//    std::cout << "Argument size: " << theArugments.size() << std::endl;
 
-    for(int i = 0; i < theArugments.size(); i++)
+    for(size_t i = 0; i < theArugments.size(); i++)
     {
        argumentList[i] = new char [theArugments.at(i).size()+1];
        strcpy(argumentList[i],theArugments.at(i).c_str());
@@ -55,16 +55,16 @@ void CMD::addArguments(std::vector<std::string> theArugments)
     
   
 
- for(int i = 0; i < theArugments.size(); i++)
- {
-     std:: cout << "char [" << i << "] : ";
-     std::cout <<  argumentList[i] << std::endl;
- }
+// for(int i = 0; i < theArugments.size(); i++)
+// {
+//     std:: cout << "char [" << i << "] : ";
+//     std::cout <<  argumentList[i] << std::endl;
+// }
    
 }
 bool CMD::execute()
 {   
-          std::cout << "CMD::execute function" << std::endl;
+//          std::cout << "CMD::execute function" << std::endl;
 
     bool theExecuted = true;
    

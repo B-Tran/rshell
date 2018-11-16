@@ -182,7 +182,7 @@ std::vector<std::string> StringParser::parse_string(std::string input)
     //while I have not completely parsed the input
     while (!input.empty())
     {
-        std::cout << "seeing if there is a literal: " << found_begin_literal(input) << "\n";
+//        std::cout << "seeing if there is a literal: " << found_begin_literal(input) << "\n";
         //if there is a literal at the beginning
         if(found_begin_literal(input) < literalList.size())
         {

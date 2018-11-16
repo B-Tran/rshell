@@ -17,17 +17,17 @@
 /* Command composite derived class */
 class CMD: public CMDLine
 {
- public:
- CMD();
- CMD(CMDLine *commandArg);
- CMD(std::vector<std::string>theArugments);
- ~CMD();
- void addArguments(std::vector<std::string> theArugments);
- bool execute();
- private:
- CMDLine *commandArg;
- char** argumentList;
- int argumentCount;
+     public:
+         CMD();
+         CMD(CMDLine *commandArg);
+         CMD(std::vector<std::string>theArugments);
+         ~CMD();
+         void addArguments(std::vector<std::string> theArugments);
+         bool execute();
+     private:
+         CMDLine *commandArg;
+         char** argumentList;
+         int argumentCount;
 };
 
 

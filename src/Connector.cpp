@@ -13,10 +13,10 @@ Connector::Connector(CMDLine *left, CMDLine *right)
 }
 Connector::~Connector()
 {
-    delete left;
-    left = nullptr;
-    delete right;
-    right = nullptr;
+//    delete left;
+//    left = nullptr;
+//    delete right;
+//    right = nullptr;
 }
 void Connector::setLeft(CMDLine *left)
 {
