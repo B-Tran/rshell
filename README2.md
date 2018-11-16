@@ -13,15 +13,9 @@ The program will output an error if the user enters a incorrect error.
      ![](assignment-1-failing-unit-testers/Assignment 1.png)
       
       
-      
-## Input
- 
-
 
 ## Output/Testing point
- If the user entered invalid command in the command line then our R Shell program will throw an error execpetion to inform the user's incorrect command. For example:
- // add the code here
- An another error checking , we considered is the connectors. An error 
+ If the user entered invalid command in the command line then our R Shell program will throw an error execpetion to inform the user's incorrect command. An another error checking , we considered is the connectors. 
  
 
  
@@ -33,7 +27,8 @@ There were several problems we ecountred in the command input.
 2) Cd is not part of bin file diectory so cd won't work as a command.However, the cd error will be implemented in the next assigment.  
 
 
-##Note
-We were only able to test the parser in the program. We are aware there are more testing that need to done in the R Shell. The rest of tests will be implemented in the next assignment. 
-Further, we added perror for every syscall.
 
+##Note
+We were only able to test the parser  in the program. We are aware there are more testing that need to done in the R Shell. because there are many potential bugs in the program. The rest of tests will be implemented in the next assignment. 
+Further, we added perror for every syscall.
+Unforunately, we didn't manaaged to upload our UML diagram section. 
