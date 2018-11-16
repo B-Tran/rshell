@@ -10,8 +10,6 @@ ADD_EXECUTABLE(rshell
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
-	 "src/stringParser.cpp"
-         "src/CMD.cpp"
 	 "src/Connector.cpp"
 	 "src/Or.cpp"
 	 "src/And.cpp"
@@ -52,7 +50,23 @@ ADD_EXECUTABLE(CMDTest
 	 "src/Exit.cpp"
          "src/CMDLine.cpp"
 	)
+ADD_EXECUTABLE(CommandsTest
+	"tests/CMDTest.cpp"
+	"src/stringParser.cpp"
+	"src/CMD.cpp"
+	 "src/cmdTranslator.cpp"
+	 "src/Connector.cpp"
+	 "src/Or.cpp"
+	 "src/And.cpp"
+	 "src/Semicolon.cpp"
+	 "src/Exit.cpp"
+         "src/CMDLine.cpp"
+)
 
 TARGET_LINK_LIBRARIES(stringParseTest gmock)
 TARGET_LINK_LIBRARIES(stringParseTest gtest)
 TARGET_COMPILE_DEFINITIONS(stringParseTest PRIVATE gtest_disable_pthreads=ON)
+
+TARGET_LINK_LIBRARIES(CommandsTest gmock)
+TARGET_LINK_LIBRARIES(CommandsTest gtest)
+TARGET_COMPILE_DEFINITIONS(CommandsTest PRIVATE gtest_disable_pthreads=ON)
