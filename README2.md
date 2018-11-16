@@ -10,7 +10,7 @@ The program will output an error if the user enters a incorrect error.
 
 
     
-     ![](https://github.com/cs100/assignment-1-failing-unit-testers/blob/C-campos/command/Assignment 1.png)
+     ![](https://github.com/cs100/assignment-1-failing-unit-testers/blob/C-campos/command/Assignment1.png)
       
       
 ## Input
