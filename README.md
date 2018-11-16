@@ -1,34 +1,34 @@
-# Assignment 1 -- Creating a Design Document
+#Assignment 2 -- Writing a Basic Command Shell
 
-**Note: All assignments must be done with *exactly* one partner.**
+## Introduction 
+The main task of assignment 2 is to create a R shell for the user to enter valid commands , arguments, and connectors in one line. The commands and connectors will be implemented as hierarchy tree structure. It has the some functionality as a bash terminal, it is able to perform the three sytem calls execvp,waitpid,and fork. 
+The program will output an error if the user enters a incorrect error. 
 
-## Introduction
-As programmers it is tempting for us to get our hands dirty with code immediately after receiving the specs. In any complex software development, there are many moving parts and pieces that can quickly turn out project into spaghetti code. It is imperative that before we open vim we take a step back, plan out the code we are going to write, and create a design to follow. One tool software engineers use for this is Unified Modeling Language (UML) which help visualize our project’s architecture. In this assignment you will create a design document to map out your first coding assignment, Assignment 2. This will include a simple UML diagram to represent your components and their dependencies. You can [read more about creating UML diagrams from this slide deck](https://docs.google.com/presentation/d/12gFQDxn4T0sXfXiuGIiW5OlUfgKW85e86UbnR59gMdc/edit?usp=sharing).
 
-## Assignment
-Your assignment is to write a design document that you will use for reference when developing your Assignment 2 submission. It’s purpose is as an exercise to get you to start designing before you start coding. Like any good agile method, what you write in the design document is a starting point for your design, not a road map that you must rigidly follow (because that would be waterfall development, and this is not a government project). You should create a document with the following sections
+## UML Diagram 
+ During the assignment 2 project, we made adjustments on the UML diagram. We added an another class called cmdTranslator. The main goal for the cmdTranslator is to convert tokens into objects. With this conversion, we can use the token objects to use call the connector's children (And, Or, Semicolon) to execute the . As the following the diagram shows:
 
-- **Title Page:** including the title “Assignment 1: Design”, the date, the quarter and year, and the authors names
-- **Introduction:** Give a brief overview of your design
-- **Diagram:** This will be the UML diagram for your system, and should show all classes you plan on developing. This diagram can take up multiple pages if necessary.
-- **Classes/Class Groups:** descriptions of each class/class group that you plan on developing, this can be as simple as a description of what each class accomplishes and how, or a pseudo code level class definition. A class group would be a group of classes that all inherit from a single base class (composite classes are an example). For class group give a description of the base class, as well as the subtle differences between the child classes. Make sure to describe any key design choices, such as why you chose certain containers for key data members, why a class needs to pointer member to another class, or how a key function will generally be written
-- **Coding Strategy:** how you and your partner plan to break up the work, who will be in charge of which segments and how you will integrate the segments together
-- **Roadblocks:** issues that you think will arise during development and what strategy you will use to overcome them
 
-When you create your design document, do not think only about the current assignment. Think about how you would also extend the assignment to have new functionality (an important exercise in software construction, as new functionality is almost always necessary).
+    
+     ![](assignment-1-failing-unit-testers/Assignment 1.png)
+      
+      
 
-Please  use some drawing program to create your UML diagram. UML diagrams that are drawn by hand and scanned/photographed and added to your design document will not be allowed. Programs such as GIMP, GraphViz, or even Google Docs should be capable of creating these diagrams.
+## Output/Testing point
+ If the user entered invalid command in the command line then our R Shell program will throw an error execpetion to inform the user's incorrect command. An another error checking , we considered is the connectors. 
+ 
 
-## Submission
-Submit your design document as a single PDF to your groups GitHub repo.
+ 
+##Problems/Limitations 
 
-## Grading
-Your documents will be graded using the following breakdown
+There were several problems we ecountred in the command input. 
+1) The program won't able to handle string literals in the command input. 
+ 
+2) Cd is not part of bin file diectory so cd won't work as a command.However, the cd error will be implemented in the next assigment.  
 
-|Points|Section|
-|:---:|:---|
-| 40 | UML Diagram |
-| 30 | Class Descriptions |
-| 20 | All Other Sections |
-| 10 | Structure |
-|**100** | **Total** |
+
+
+##Note
+We were only able to test the parser  in the program. We are aware there are more testing that need to done in the R Shell. because there are many potential bugs in the program. The rest of tests will be implemented in the next assignment. 
+Further, we added perror for every syscall.
+Unforunately, we didn't manaaged to upload our UML diagram section. 
