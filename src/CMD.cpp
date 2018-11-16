@@ -1,7 +1,7 @@
 #include "CMD.h"
 CMD::CMD()
 {
-   argumentList = nullptr;
+   argumentList = NULL;
    argumentCount = 0;
 }
 
@@ -11,7 +11,7 @@ CMD::CMD(CMDLine *commandArg)
 }
  CMD::CMD(std::vector<std::string>theArugments)
  {
-    argumentList = nullptr;
+    argumentList = NULL;
     argumentCount = 0;
     this->addArguments(theArugments);
  }

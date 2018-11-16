@@ -63,7 +63,7 @@ int main()
                 //            std::cout << "\n";
 
                 //            std::cout << "executeing\n";
-                CMDLine * toExecute = nullptr;
+                CMDLine * toExecute = NULL;
                 CMDTranslator translator;
                 toExecute = translator.translate(tokens,allocatedCommands);
 
@@ -81,7 +81,7 @@ int main()
 //            std::cout << "here !\n";
             while (!allocatedCommands.empty()) {
                 delete allocatedCommands.back();
-                allocatedCommands.back() = nullptr;
+                allocatedCommands.back() = NULL;
                 allocatedCommands.pop_back();
             }
         }
