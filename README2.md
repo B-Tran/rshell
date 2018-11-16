@@ -10,7 +10,8 @@ The program will output an error if the user enters a incorrect error.
 
 
       
-      ![UML Diagram](https://github.com/CS100/assignment-1-failing-unit-testers/src/Assignment_1.png)
+      ![UML Diagram](assignment-1-failing-unit-testers/src/Assignment_1.png)
+      
       
 ## Input
  
