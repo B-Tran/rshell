@@ -3,6 +3,7 @@
 #include "And.h"
 #include "Or.h"
 #include "Semicolon.h"
+#include <cstdlib>
 
 
 CMDTranslator::CMDTranslator()

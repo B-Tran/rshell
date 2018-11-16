@@ -1,10 +1,11 @@
 #include "Connector.h"
+#include <cstdlib>
 
 
 Connector::Connector()
 {
-    left = nullptr;
-    right = nullptr;
+    left = NULL;
+    right = NULL;
 }
 Connector::Connector(CMDLine *left, CMDLine *right)
 {
@@ -13,10 +14,7 @@ Connector::Connector(CMDLine *left, CMDLine *right)
 }
 Connector::~Connector()
 {
-//    delete left;
-//    left = nullptr;
-//    delete right;
-//    right = nullptr;
+
 }
 void Connector::setLeft(CMDLine *left)
 {

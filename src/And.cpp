@@ -1,5 +1,6 @@
 #include "And.h"
 #include <string>
+#include <cstdlib>
 
 And::And() 
 {

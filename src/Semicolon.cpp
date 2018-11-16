@@ -1,19 +1,16 @@
 #include "Semicolon.h"
-
+#include <cstdlib>
 Semicolon::Semicolon()
 {
-     left = nullptr;
-    right = nullptr;
+     left = NULL;
+    right = NULL;
 }
 Semicolon::Semicolon(CMDLine *left, CMDLine *right) : Connector(left, right)
 {
 }
 Semicolon::~Semicolon()
 {
-    delete left;
-    left = nullptr;
-    delete right;
-    right = nullptr;
+    
 }
 bool Semicolon::execute()
 { 

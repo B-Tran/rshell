@@ -1,4 +1,6 @@
 #include "CMD.h"
+#include <cstdlib>
+
 CMD::CMD()
 {
    argumentList = NULL;

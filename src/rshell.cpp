@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>  // wait
 #include <limits.h> // HOST_Name_MAX
-
+#include <cstdlib>
 
 int main()
 {

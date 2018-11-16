@@ -1,20 +1,17 @@
 #include "Or.h"
 #include <string>
+#include <cstdlib>
 
 Or::Or()
 {
-    left = nullptr;
-    right = nullptr;
+    left = NULL;
+    right = NULL;
 }
 Or::Or(CMDLine *left, CMDLine *right) : Connector(left, right)
 {
 }
 Or::~Or()
 {
-//    delete left;
-//    left = nullptr;
-//    delete right;
-//    right = nullptr;
 
 }
 bool Or::execute()
