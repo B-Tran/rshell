@@ -30,6 +30,27 @@ void CMDTranslator::remove_comment(std::vector<std::string> & tokenList)
 //	}
 }
 
+void ::CMDTranslator::remove_literals(std::string & token)
+{
+    bool done = false;
+    size_t pos;
+    while(!done)
+    {
+        if((pos = token.find("\"")) < token.size())
+        {
+            token.erase(pos,1);
+        }
+        else if((pos = token.find("\'")) < token.size())
+        {
+            token.erase(pos,1);
+        }
+        else
+        {
+            done = true;
+        }
+    }
+}
+
 CMD * CMDTranslator::make_CMD(std::vector<std::string> & tokenList)
 {
 	std::vector<std::string> arguments;
@@ -39,6 +60,7 @@ CMD * CMDTranslator::make_CMD(std::vector<std::string> & tokenList)
     // then pushes the token into the argument list
     while(!tokenList.empty() && !is_Connector(tokenList.front()) && !(tokenList.front().find("#") == 0))
     {
+        remove_literals(tokenList.front());
         arguments.push_back(tokenList.front());
         tokenList.erase(tokenList.begin());
     }

@@ -5,14 +5,17 @@
 
 TEST(StringParseTest, OneItem)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string input = "ls";
 	std::vector<std::string> tokens;
@@ -26,14 +29,17 @@ TEST(StringParseTest, OneItem)
 
 TEST(StringParseTest, TwoItems)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string ls = "ls -a";
 	std::vector<std::string> tokens;
@@ -48,14 +54,17 @@ TEST(StringParseTest, TwoItems)
 
 TEST(StringParseTest, FiveItems)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string ls = "ls -a; echo hello";
 	std::vector<std::string> tokens;
@@ -73,14 +82,17 @@ TEST(StringParseTest, FiveItems)
 
 TEST(StringParseTest, SevenItems)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string ls = "ls -a; echo hello || echo world";
 	std::vector<std::string> tokens;
@@ -101,14 +113,17 @@ TEST(StringParseTest, SevenItems)
 
 TEST(StringParseTest, NineItems)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string ls = "ls -a; echo hello || echo world; git status";
 	std::vector<std::string> tokens;
@@ -132,14 +147,17 @@ TEST(StringParseTest, NineItems)
 
 TEST(StringParseTest, NineItemsNoSpaces)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string ls = "ls -a;echo hello||echo world;git status";
 	std::vector<std::string> tokens;
@@ -163,14 +181,17 @@ TEST(StringParseTest, NineItemsNoSpaces)
 
 TEST(StringParseTest, NineItemsAllSpaces)
 {
-	std::vector<std::string> dList;
+    std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     
     std::string ls = "ls -a ; echo hello || echo world ; git status";
 	std::vector<std::string> tokens;

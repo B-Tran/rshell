@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 ADD_SUBDIRECTORY(googletest)
 
-ADD_EXECUTABLE(RShell 
+ADD_EXECUTABLE(rshell 
 	"src/main.cpp" 
 	"src/stringParser.cpp"
 	"src/CMD.cpp"

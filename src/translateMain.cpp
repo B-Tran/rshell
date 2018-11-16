@@ -12,12 +12,15 @@ int main()
 {
     std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     std::string input;
     std::vector<std::string> tokens;
 
