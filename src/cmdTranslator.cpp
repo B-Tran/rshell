@@ -30,15 +30,37 @@ void CMDTranslator::remove_comment(std::vector<std::string> & tokenList)
 //	}
 }
 
+void ::CMDTranslator::remove_literals(std::string & token)
+{
+    bool done = false;
+    size_t pos;
+    while(!done)
+    {
+        if((pos = token.find("\"")) < token.size())
+        {
+            token.erase(pos,1);
+        }
+        else if((pos = token.find("\'")) < token.size())
+        {
+            token.erase(pos,1);
+        }
+        else
+        {
+            done = true;
+        }
+    }
+}
+
 CMD * CMDTranslator::make_CMD(std::vector<std::string> & tokenList)
 {
 	std::vector<std::string> arguments;
-	CMD * cmd = nullptr;
+    CMD * cmd = NULL;
 
     //while the token list is not empty and is is not a connector, and is not a comment
     // then pushes the token into the argument list
     while(!tokenList.empty() && !is_Connector(tokenList.front()) && !(tokenList.front().find("#") == 0))
     {
+        remove_literals(tokenList.front());
         arguments.push_back(tokenList.front());
         tokenList.erase(tokenList.begin());
     }
@@ -59,7 +81,7 @@ CMD * CMDTranslator::make_CMD(std::vector<std::string> & tokenList)
 
 Connector * CMDTranslator::make_connector(std::vector<std::string> & tokenList)
 {
-    Connector * newConnector = nullptr;
+    Connector * newConnector = NULL;
     if(tokenList.front() == connectors.at(0))
     {
         newConnector = new And();
@@ -92,9 +114,9 @@ bool CMDTranslator::is_Connector(const std::string& item)
 CMDLine * CMDTranslator::translate(std::vector<std::string> tokenList,
 							std::vector<CMDLine*> & returnList)
 {
-    CMDLine * toReturn = nullptr;
+    CMDLine * toReturn = NULL;
     std::vector<CMDLine *> items;
-    Connector * temp = nullptr;
+    Connector * temp = NULL;
 	
     if(is_Connector(tokenList.front()))
     {
@@ -121,7 +143,7 @@ CMDLine * CMDTranslator::translate(std::vector<std::string> tokenList,
             }
             //else if the token is a connector and the previous item is not a connector
             //then make a new connector item
-            else if(temp == nullptr && is_Connector(tokenList.front()))
+            else if(temp == NULL && is_Connector(tokenList.front()))
             {
                 temp = make_connector(tokenList);
                 returnList.push_back(temp);
@@ -151,7 +173,7 @@ CMDLine * CMDTranslator::translate(std::vector<std::string> tokenList,
             temp->setLeft(items.back());
             items.pop_back();
             items.push_back(temp);
-            temp = nullptr;
+            temp = NULL;
         }
 	}
 

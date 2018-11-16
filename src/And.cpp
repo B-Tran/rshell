@@ -1,23 +1,26 @@
 #include "And.h"
+#include <string>
 
 And::And() 
 {
-   left = nullptr;
-    right = nullptr;
+   left = NULL;
+    right = NULL;
 }
 And::And(CMDLine *left, CMDLine *right) : Connector(left, right)
 {
 }
 And::~And()
 {
-  delete left;
-  left = nullptr;
-  delete right;
-  right = nullptr;
+
 }
 bool And::execute()
 {
-  return (left->execute() && right->execute());
+    if(!right)
+    {
+        const std::string error = "Error : -bash: syntax error near unexpected token && \n";
+        throw error;
+    }
+    return (left->execute() && right->execute());
 }
 
 		

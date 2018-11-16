@@ -4,7 +4,7 @@
 #include "stringParser.h"
 #include <sys/types.h>
 #include <sys/wait.h>  // wait  
-#include <limits.h> // HOST_Name_MAX
+#include "limits.h" // HOST_Name_MAX
 
 
 
@@ -13,13 +13,15 @@ int main()
 {
     std::vector<std::string> dList;
     std::vector<std::string> dIList;
+    std::vector<std::string> limiters;
     dList.push_back(" ");
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
-    dList.push_back("#");
     dIList.push_back(" ");
-    StringParser parsing(dList,dIList);
+    limiters.push_back("\"");
+    limiters.push_back("\'");
+    StringParser parsing(dList,dIList,limiters);
     std::string input;
     std::vector<std::string> tokens;
      std::string theLogin = std::string();

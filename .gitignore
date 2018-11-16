@@ -8,3 +8,5 @@ lib/
 CMakeLists.txt.user
 translateMain
 .vscode/
+rshell
+CMDTest

@@ -18,7 +18,9 @@ class CMDTranslator
 			
 			//removes the tokens that are after a # sign
 			void remove_comment(std::vector<std::string> & tokenList);
-			//makes a CMD object
+            //removes the literals from a token
+            void remove_literals(std::string & token);
+            //makes a CMD object
             CMD *make_CMD(std::vector<std::string> & tokenList);
             //making the connector object
             Connector * make_connector(std::vector<std::string> & tokenList);

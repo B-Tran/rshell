@@ -2,8 +2,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 ADD_SUBDIRECTORY(googletest)
 
-ADD_EXECUTABLE(RShell 
-	"src/main.cpp" 
+ADD_EXECUTABLE(rshell 
+	"src/rshell.cpp" 
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
@@ -14,6 +14,7 @@ ADD_EXECUTABLE(RShell
 	 "src/And.cpp"
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
+         "src/CMDLine.cpp"
 	)
 
 ADD_EXECUTABLE(stringParseTest
@@ -31,8 +32,23 @@ ADD_EXECUTABLE(translateMain
         "src/And.cpp"
 	"src/Semicolon.cpp"
 	"src/Exit.cpp"
-	
+        "src/CMDLine.cpp"
 )
+
+ADD_EXECUTABLE(CMDTest
+	"src/main.cpp" 
+	"src/stringParser.cpp"
+	"src/CMD.cpp"
+	 "src/cmdTranslator.cpp"
+	 "src/stringParser.cpp"
+         "src/CMD.cpp"
+	 "src/Connector.cpp"
+	 "src/Or.cpp"
+	 "src/And.cpp"
+	 "src/Semicolon.cpp"
+	 "src/Exit.cpp"
+         "src/CMDLine.cpp"
+	)
 
 TARGET_LINK_LIBRARIES(stringParseTest gmock)
 TARGET_LINK_LIBRARIES(stringParseTest gtest)
