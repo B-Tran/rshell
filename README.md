@@ -6,12 +6,16 @@ The program will output an error if the user enters a incorrect error.
 
 
 ## UML Diagram 
- During the assignment 2 project, we made adjustments on the UML diagram. We added an another class called cmdTranslator. The main goal for the cmdTranslator is to convert tokens into objects. With this conversion, we can use the token objects to use call the connector's children (And, Or, Semicolon) to execute the . As the following the diagram shows:
+ During the assignment 2 project, we made adjustments on the UML diagram. We added an another class called cmdTranslator. The main goal for the cmdTranslator is to convert tokens into objects. With this conversion, we can use the token objects to call the connector's children (And, Or, Semicolon) to execute the the boolean condition. As the following the diagram demonstrates:
 
 ![assignment 1](https://user-images.githubusercontent.com/43591097/48861992-d37fe480-ed79-11e8-8033-6dc0a29ee0e6.png)
 
 ## Output/Testing point
- If the user entered invalid command in the command line then our R Shell program will throw an error execpetion to inform the user's incorrect command. An another error checking , we considered is the connectors. 
+ If the user entered invalid command in the command line then our R Shell program will throw an error execpetion to inform the user's incorrect command. 
+
+'ls -a' 
+
+An another error checking , we considered is the connectors. 
  
 
  
@@ -21,14 +25,17 @@ There were several problems we encountered  in the command input.
 
 1. The program won't able to handle string literals in the command input. 
  
-2. Cd is not part of bin file diectory so cd won't work as a command.However, the cd error will be implemented in the next assigment.  
+2. Cd is not part of bin file diectory so cd won't work as a command.  
+
+3. The command input does not handle Parenthesis 
+
+4. 
 
 
 
 ## Note
-We were only able to test the parser  in the program. We are aware there are more testing that need to done in the R Shell. because there are many potential bugs in the program. The rest of tests will be implemented in the next assignment. 
+We were only able to test the parser in the program. We are aware there are more testing that need to done in the R Shell because there are many potential bugs in the program. The rest of tests will be implemented in the next assignment. 
 Further, we added perror for every syscall.
-Unforunately, we didn't manaaged to upload our UML diagram section. 
 
 ## Authors & Contributor List
 
