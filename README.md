@@ -1,6 +1,6 @@
 Assignment 2 -- Writing a Basic Command Shell
 ===
-## Installation
+## Rshell - Installation
 ```bash
 $ git clone https://github.com/cs100/assignment-1-failing-unit-testers.git
 
