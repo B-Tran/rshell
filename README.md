@@ -10,8 +10,6 @@ The program will output an error if the user enters a incorrect error.
 
 
     
-     ![](assignment-1-failing-unit-testers/Assignment 1.png)
-      
      ![](assignment-1-failing-unit-testers/images/Assignment 1.png)
       
       
