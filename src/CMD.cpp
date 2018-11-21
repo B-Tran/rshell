@@ -71,12 +71,12 @@ bool CMD::execute()
 //          std::cout << "CMD::execute function" << std::endl;
 
     bool theExecuted = true;
+   int old_errno = errno;
 //    clear the errno value
 //   errno = 0;
    // Create a child process of datatype of process id           
    pid_t pid = fork();  
    int status = 0;
-   int old_errno = errno;
 if(pid == 0)
  {
     // std::cout << "Child pid:" << getpid() << std::endl;
