@@ -71,7 +71,7 @@ bool CMD::execute()
 //          std::cout << "CMD::execute function" << std::endl;
 
     bool theExecuted = true;
-   int old_errno = errno;
+    int old_errno = errno;
 //    clear the errno value
 //   errno = 0;
    // Create a child process of datatype of process id           
@@ -85,11 +85,12 @@ if(pid == 0)
 //       std::cout << "kiilling the process\n";
        perror("Command not found");
        //kill the function if the child fails
-       _exit(errno);
+       _exit(69);
 //       theExecuted = false;
 //       std::cout << "killed the child process\n";
 //       return false;
     }
+//    _exit(errno);
  }
 else if(pid == -1)   // if fork fails 
    {
@@ -101,6 +102,7 @@ else if(pid == -1)   // if fork fails
 else
    {  // parent process id 
   // std::cout << "Parent pid:" << getpid() << std::endl;
+//	   std::cout << "status value before waitpid: " << WEXITSTATUS(status) << "\n";
       if(waitpid(pid,&status,0) == -1)
       {
            perror("wait");
@@ -109,7 +111,7 @@ else
    } 
 
 //    std::cout << "errno value: " << errno << "\n";
-//    std::cout << "status: " << status << "\n";
+//    std::cout << "status: " << WEXITSTATUS(status) << "\n";
 //    if(WIFEXITED(status))
 //    {
 //	    std::cout << "exit success\n";
@@ -121,9 +123,14 @@ else
 //    std::cout << "at end of process: "<< theExecuted <<" \n";
 //    return theExecuted;
 //    return (errno == 0);
-    theExecuted = (errno == 0);
-    errno = old_errno;
+//    theExecuted = (errno == 0);
+//    errno = old_errno;
 //    std::cout << "theExecuted: " << theExecuted << "\n";
+    if(WEXITSTATUS(status) != 0)
+    {
+	    theExecuted = false;
+    }
+
     return theExecuted;
 }
 // 
