@@ -1,5 +1,16 @@
 Assignment 2 -- Writing a Basic Command Shell
 ===
+## Installation
+$ git clone https://github.com/cs100/assignment-1-failing-unit-testers.git
+
+$ cd assignment-1-failing-unit-testers
+
+$ cmake .
+
+$ make
+
+$./rhsell
+
 ## Introduction 
 The main task of assignment 2 is to create a R shell for the user to enter valid commands , arguments, and connectors in one line. The commands and connectors will be implemented as hierarchy tree structure. It has the some functionality as a bash terminal, it is able to perform the three sytem calls execvp,waitpid,and fork. 
 The program will output an error if the user enters a incorrect error. 
@@ -11,9 +22,9 @@ The program will output an error if the user enters a incorrect error.
 ![assignment 1](https://user-images.githubusercontent.com/43591097/48861992-d37fe480-ed79-11e8-8033-6dc0a29ee0e6.png)
 
 ## Output/Testing point
- If the user entered invalid command in the command line then our R Shell program will throw an error execpetion to inform the user's incorrect command. 
+ If the user entered invalid command in the command line then our R Shell program will throw an error exception to inform the user's incorrect command.For example:
 
-'ls -a' 
+ 
 
 An another error checking , we considered is the connectors. 
  
