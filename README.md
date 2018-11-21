@@ -32,3 +32,13 @@ There were several problems we ecountred in the command input.
 We were only able to test the parser  in the program. We are aware there are more testing that need to done in the R Shell. because there are many potential bugs in the program. The rest of tests will be implemented in the next assignment. 
 Further, we added perror for every syscall.
 Unforunately, we didn't manaaged to upload our UML diagram section. 
+
+## Authors & Contributor List
+
+*Brandon Tran - https://github.com/B-Tran
+*Christian Campos - https://github.com/ccamp032
+
+All other known bugs and fixes can be sent to btran054@ucr.edu and ccamp032@ucr.edu 
+Reported bugs and fixes will be submitted to correction
+
+
