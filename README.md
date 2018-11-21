@@ -9,9 +9,9 @@ The program will output an error if the user enters a incorrect error.
  During the assignment 2 project, we made adjustments on the UML diagram. We added an another class called cmdTranslator. The main goal for the cmdTranslator is to convert tokens into objects. With this conversion, we can use the token objects to use call the connector's children (And, Or, Semicolon) to execute the . As the following the diagram shows:
 
 
-    
-     assignment-1-failing-unit-testers/images/Assignment 1.png
-      
+   
+        assignment-1-failing-unit-testers/images/Assignment 1.png
+            
       
 
 ## Output/Testing point
