@@ -1,6 +1,7 @@
 Assignment 2 -- Writing a Basic Command Shell
 ===
 ## Installation
+```bash
 $ git clone https://github.com/cs100/assignment-1-failing-unit-testers.git
 
 $ cd assignment-1-failing-unit-testers
@@ -9,7 +10,9 @@ $ cmake .
 
 $ make
 
-$./rhsell
+$  ./rshell
+```
+
 
 ## Introduction 
 The main task of assignment 2 is to create a R shell for the user to enter valid commands , arguments, and connectors in one line. The commands and connectors will be implemented as hierarchy tree structure. It has the some functionality as a bash terminal, it is able to perform the three sytem calls execvp,waitpid,and fork. 
