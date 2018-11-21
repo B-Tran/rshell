@@ -1,7 +1,7 @@
 Rshell
 ===
 ## Installation
-```
+```bash
 $ git clone https://github.com/cs100/assignment-1-failing-unit-testers.git
 
 $ cd assignment-1-failing-unit-testers
