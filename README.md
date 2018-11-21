@@ -15,12 +15,13 @@ The program will output an error if the user enters a incorrect error.
  
 
  
-## Problems/Limitations 
+## Known Bugs
 
-There were several problems we ecountred in the command input. 
-1) The program won't able to handle string literals in the command input. 
+There were several problems we encountered  in the command input.
+
+1. The program won't able to handle string literals in the command input. 
  
-2) Cd is not part of bin file diectory so cd won't work as a command.However, the cd error will be implemented in the next assigment.  
+2. Cd is not part of bin file diectory so cd won't work as a command.However, the cd error will be implemented in the next assigment.  
 
 
 
