@@ -1,5 +1,5 @@
-#Assignment 2 -- Writing a Basic Command Shell
-
+Assignment 2 -- Writing a Basic Command Shell
+===
 ## Introduction 
 The main task of assignment 2 is to create a R shell for the user to enter valid commands , arguments, and connectors in one line. The commands and connectors will be implemented as hierarchy tree structure. It has the some functionality as a bash terminal, it is able to perform the three sytem calls execvp,waitpid,and fork. 
 The program will output an error if the user enters a incorrect error. 
@@ -19,7 +19,7 @@ The program will output an error if the user enters a incorrect error.
  
 
  
-##Problems/Limitations 
+## Problems/Limitations 
 
 There were several problems we ecountred in the command input. 
 1) The program won't able to handle string literals in the command input. 
@@ -28,7 +28,7 @@ There were several problems we ecountred in the command input.
 
 
 
-##Note
+## Note
 We were only able to test the parser  in the program. We are aware there are more testing that need to done in the R Shell. because there are many potential bugs in the program. The rest of tests will be implemented in the next assignment. 
 Further, we added perror for every syscall.
 Unforunately, we didn't manaaged to upload our UML diagram section. 
