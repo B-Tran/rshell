@@ -77,9 +77,9 @@ bool CMD::execute()
    pid_t pid = fork();  
    int status = 0;
    int old_errno = errno;
-
 if(pid == 0)
  {
+    // std::cout << "Child pid:" << getpid() << std::endl;
     if(execvp(argumentList[0],argumentList) == -1)
     {
 //       std::cout << "kiilling the process\n";
@@ -100,6 +100,7 @@ else if(pid == -1)   // if fork fails
 //else if(pid > 0) 
 else
    {  // parent process id 
+  // std::cout << "Parent pid:" << getpid() << std::endl;
       if(waitpid(pid,&status,0) == -1)
       {
            perror("wait");

@@ -49,10 +49,10 @@ int main()
     {
         while(1)
         {
+            
             try
             {
                 std::cout << theLogin << "@" << theHost << "$ ";
-
                 getline(std::cin,input);
                 tokens = parsing.parse_string(input);
                 //            std::cout << "token list\n";
@@ -68,15 +68,21 @@ int main()
                 toExecute = translator.translate(tokens,allocatedCommands);
 
                 if(toExecute)
+                {
                     toExecute->execute();
+                }
                 else
+                {
                     std::cout << "to execute failed\n";
+                }
+                
 
             }
             catch (const std::string e)
             {
                 std::cout << e;
             }
+        
 //            std::cout << "\n";
 //            std::cout << "here !\n";
             while (!allocatedCommands.empty()) {
@@ -84,6 +90,7 @@ int main()
                 allocatedCommands.back() = NULL;
                 allocatedCommands.pop_back();
             }
-        }
+               
+        } // end of while(1)
     }
 }

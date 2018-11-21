@@ -119,7 +119,7 @@ CMDLine * CMDTranslator::translate(std::vector<std::string> tokenList,
     std::vector<CMDLine *> items;
     Connector * temp = NULL;
 	
-    if(is_Connector(tokenList.front()))
+    if ( !tokenList.empty() &&  is_Connector(tokenList.front()))
     {
         const std::string error = 
         "Error : -bash: syntax error near unexpected token "
