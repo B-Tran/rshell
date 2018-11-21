@@ -31,9 +31,9 @@ Unforunately, we didn't manaaged to upload our UML diagram section.
 
 ## Authors & Contributor List
 
-*Brandon Tran - https://github.com/B-Tran
+* Brandon Tran - https://github.com/B-Tran
 
-*Christian Campos - https://github.com/ccamp032
+* Christian Campos - https://github.com/ccamp032
 
 All other known bugs and fixes can be sent to btran054@ucr.edu and ccamp032@ucr.edu 
 
