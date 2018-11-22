@@ -21,14 +21,6 @@ We used the composite design pattern to implemented the program as hierarchy tre
 ## UML Diagram 
 ![assignment 1](https://user-images.githubusercontent.com/43591097/48861992-d37fe480-ed79-11e8-8033-6dc0a29ee0e6.png)
 
-## Output
- If the user entered invalid command in the command line then our R Shell program will throw an error exception to inform the user's incorrect command. For example:
-
- 
-
-An another error checking , we considered is the connectors. 
- 
-
  
 ## Known Bugs
 
