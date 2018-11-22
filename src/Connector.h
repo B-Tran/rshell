@@ -3,14 +3,14 @@
 
 #include "CMDLine.h"
 
-/*  Composite */
+/*  Composite Class */
 class Connector : public CMDLine
 {
-  protected:
+protected:
 	CMDLine *left;
 	CMDLine *right;
 
-  public:
+public:
 	Connector();
 	Connector(CMDLine *left, CMDLine *right);
 	~Connector();

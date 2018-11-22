@@ -3,14 +3,13 @@
 
 #include "Connector.h"
 
-class And : public Connector  
+class And : public Connector
 {
-  public:
+public:
   And();
-  And(CMDLine* left, CMDLine* right);
+  And(CMDLine *left, CMDLine *right);
   ~And();
   bool execute();
 };
-
 
 #endif

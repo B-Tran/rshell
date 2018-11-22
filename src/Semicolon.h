@@ -3,15 +3,13 @@
 
 #include "Connector.h"
 
-
-class Semicolon: public Connector
+class Semicolon : public Connector
 {
-  public:
+public:
   Semicolon();
-  Semicolon(CMDLine* left, CMDLine* right);
+  Semicolon(CMDLine *left, CMDLine *right);
   ~Semicolon();
   bool execute();
 };
 
-
-#endif 
+#endif

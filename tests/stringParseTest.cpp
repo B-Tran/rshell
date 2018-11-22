@@ -15,16 +15,16 @@ TEST(StringParseTest, OneItem)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
+    StringParser parsing(dList, dIList, limiters);
+
     std::string input = "ls";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(input);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	
-	EXPECT_EQ(tokens,ansTokens);
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(input);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+
+    EXPECT_EQ(tokens, ansTokens);
 }
 
 TEST(StringParseTest, TwoItems)
@@ -39,17 +39,17 @@ TEST(StringParseTest, TwoItems)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
+    StringParser parsing(dList, dIList, limiters);
+
     std::string ls = "ls -a";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(ls);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	ansTokens.push_back("-a");
-	
-	EXPECT_EQ(tokens,ansTokens);
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(ls);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+    ansTokens.push_back("-a");
+
+    EXPECT_EQ(tokens, ansTokens);
 }
 
 TEST(StringParseTest, FiveItems)
@@ -64,20 +64,20 @@ TEST(StringParseTest, FiveItems)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
+    StringParser parsing(dList, dIList, limiters);
+
     std::string ls = "ls -a; echo hello";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(ls);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	ansTokens.push_back("-a");
-	ansTokens.push_back(";");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("hello");
-	
-	EXPECT_EQ(tokens,ansTokens);
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(ls);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+    ansTokens.push_back("-a");
+    ansTokens.push_back(";");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("hello");
+
+    EXPECT_EQ(tokens, ansTokens);
 }
 
 TEST(StringParseTest, SevenItems)
@@ -92,23 +92,23 @@ TEST(StringParseTest, SevenItems)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
+    StringParser parsing(dList, dIList, limiters);
+
     std::string ls = "ls -a; echo hello || echo world";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(ls);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	ansTokens.push_back("-a");
-	ansTokens.push_back(";");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("hello");
-	ansTokens.push_back("||");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("world");
-	
-	EXPECT_EQ(tokens,ansTokens);
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(ls);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+    ansTokens.push_back("-a");
+    ansTokens.push_back(";");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("hello");
+    ansTokens.push_back("||");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("world");
+
+    EXPECT_EQ(tokens, ansTokens);
 }
 
 TEST(StringParseTest, NineItems)
@@ -123,26 +123,26 @@ TEST(StringParseTest, NineItems)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
+    StringParser parsing(dList, dIList, limiters);
+
     std::string ls = "ls -a; echo hello || echo world; git status";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(ls);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	ansTokens.push_back("-a");
-	ansTokens.push_back(";");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("hello");
-	ansTokens.push_back("||");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("world");
-	ansTokens.push_back(";");
-	ansTokens.push_back("git");
-	ansTokens.push_back("status");
-	
-	EXPECT_EQ(tokens,ansTokens);
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(ls);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+    ansTokens.push_back("-a");
+    ansTokens.push_back(";");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("hello");
+    ansTokens.push_back("||");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("world");
+    ansTokens.push_back(";");
+    ansTokens.push_back("git");
+    ansTokens.push_back("status");
+
+    EXPECT_EQ(tokens, ansTokens);
 }
 
 TEST(StringParseTest, NineItemsNoSpaces)
@@ -157,26 +157,26 @@ TEST(StringParseTest, NineItemsNoSpaces)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
+    StringParser parsing(dList, dIList, limiters);
+
     std::string ls = "ls -a;echo hello||echo world;git status";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(ls);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	ansTokens.push_back("-a");
-	ansTokens.push_back(";");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("hello");
-	ansTokens.push_back("||");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("world");
-	ansTokens.push_back(";");
-	ansTokens.push_back("git");
-	ansTokens.push_back("status");
-	
-	EXPECT_EQ(tokens,ansTokens);
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(ls);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+    ansTokens.push_back("-a");
+    ansTokens.push_back(";");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("hello");
+    ansTokens.push_back("||");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("world");
+    ansTokens.push_back(";");
+    ansTokens.push_back("git");
+    ansTokens.push_back("status");
+
+    EXPECT_EQ(tokens, ansTokens);
 }
 
 TEST(StringParseTest, NineItemsAllSpaces)
@@ -191,30 +191,24 @@ TEST(StringParseTest, NineItemsAllSpaces)
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
-    
-    std::string ls = "ls -a ; echo hello || echo world ; git status";
-	std::vector<std::string> tokens;
-	tokens = parsing.parse_string(ls);
-	
-	std::vector<std::string> ansTokens;
-	ansTokens.push_back("ls");
-	ansTokens.push_back("-a");
-	ansTokens.push_back(";");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("hello");
-	ansTokens.push_back("||");
-	ansTokens.push_back("echo");
-	ansTokens.push_back("world");
-	ansTokens.push_back(";");
-	ansTokens.push_back("git");
-	ansTokens.push_back("status");
-	
-	EXPECT_EQ(tokens,ansTokens);
-}
+    StringParser parsing(dList, dIList, limiters);
 
-//int main(int argc, char ** argv)
-//{
-//	::testing::InitGoogleTest(&argc,argv);
-//	return RUN_ALL_TESTS();
-//}
+    std::string ls = "ls -a ; echo hello || echo world ; git status";
+    std::vector<std::string> tokens;
+    tokens = parsing.parse_string(ls);
+
+    std::vector<std::string> ansTokens;
+    ansTokens.push_back("ls");
+    ansTokens.push_back("-a");
+    ansTokens.push_back(";");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("hello");
+    ansTokens.push_back("||");
+    ansTokens.push_back("echo");
+    ansTokens.push_back("world");
+    ansTokens.push_back(";");
+    ansTokens.push_back("git");
+    ansTokens.push_back("status");
+
+    EXPECT_EQ(tokens, ansTokens);
+}

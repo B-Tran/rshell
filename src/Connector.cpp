@@ -1,7 +1,6 @@
 #include "Connector.h"
 #include <cstdlib>
 
-
 Connector::Connector()
 {
     left = NULL;
@@ -14,7 +13,6 @@ Connector::Connector(CMDLine *left, CMDLine *right)
 }
 Connector::~Connector()
 {
-
 }
 void Connector::setLeft(CMDLine *left)
 {
@@ -25,5 +23,5 @@ void Connector::setRight(CMDLine *right)
     this->right = right;
 }
 bool Connector::execute()
-{   
+{
 }
