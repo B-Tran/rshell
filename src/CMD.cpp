@@ -1,5 +1,7 @@
 #include "CMD.h"
 #include <cstdlib>
+#include <cerrno>
+#include <stdlib.h>
 
 CMD::CMD()
 {
@@ -69,33 +71,65 @@ bool CMD::execute()
 //          std::cout << "CMD::execute function" << std::endl;
 
     bool theExecuted = true;
-   
+    int old_errno = errno;
+//    clear the errno value
+//   errno = 0;
    // Create a child process of datatype of process id           
    pid_t pid = fork();  
-
+   int status = 0;
 if(pid == 0)
  {
+    // std::cout << "Child pid:" << getpid() << std::endl;
     if(execvp(argumentList[0],argumentList) == -1)
     {
-       theExecuted = false;
+//       std::cout << "kiilling the process\n";
        perror("Command not found");
+       //kill the function if the child fails
+       _exit(69);
+//       theExecuted = false;
+//       std::cout << "killed the child process\n";
+//       return false;
     }
+//    _exit(errno);
  }
- else if(pid == -1)   // if fork fails 
+else if(pid == -1)   // if fork fails 
    {
        perror("problem forking"); // run error checking
-       theExecuted = false;
+      return false;
    }
-else if(pid > 0) 
+
+//else if(pid > 0) 
+else
    {  // parent process id 
-      int status;
+  // std::cout << "Parent pid:" << getpid() << std::endl;
+//	   std::cout << "status value before waitpid: " << WEXITSTATUS(status) << "\n";
       if(waitpid(pid,&status,0) == -1)
       {
            perror("wait");
-           theExecuted = false;
-       }
+//           return false;
+      }
    } 
-    
+
+//    std::cout << "errno value: " << errno << "\n";
+//    std::cout << "status: " << WEXITSTATUS(status) << "\n";
+//    if(WIFEXITED(status))
+//    {
+//	    std::cout << "exit success\n";
+//    }
+//    else
+//    {
+//	    std::cout << "exit failed\n";
+//    }
+//    std::cout << "at end of process: "<< theExecuted <<" \n";
+//    return theExecuted;
+//    return (errno == 0);
+//    theExecuted = (errno == 0);
+//    errno = old_errno;
+//    std::cout << "theExecuted: " << theExecuted << "\n";
+    if(WEXITSTATUS(status) != 0)
+    {
+	    theExecuted = false;
+    }
 
     return theExecuted;
 }

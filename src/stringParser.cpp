@@ -73,7 +73,7 @@ std::string StringParser::get_literal(std::string & input)
     std::string token;
     if((ending = input.find(literalList.at(pos),1)) < input.size())
     {
-        std::cout << "ending: " << ending << " size: " << input.size() << "\n";
+        //std::cout << "ending: " << ending << " size: " << input.size() << "\n";
         //if the ending literal is found with a space at the end or is the very last item
         if((((ending + 1) < input.size()) && (input.at(ending + 1) == ' ')) || ((ending + 1) == input.size()))
         {

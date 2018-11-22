@@ -213,8 +213,8 @@ TEST(StringParseTest, NineItemsAllSpaces)
 	EXPECT_EQ(tokens,ansTokens);
 }
 
-int main(int argc, char ** argv)
-{
-	::testing::InitGoogleTest(&argc,argv);
-	return RUN_ALL_TESTS();
-}
+//int main(int argc, char ** argv)
+//{
+//	::testing::InitGoogleTest(&argc,argv);
+//	return RUN_ALL_TESTS();
+//}
