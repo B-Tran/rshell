@@ -68,8 +68,10 @@ std::string StringParser::get_literal(std::string &input)
     std::string token;
     if ((ending = input.find(literalList.at(pos), 1)) < input.size())
     {
-        //if the ending literal is found with a space at the end or is the very last item
-        if ((((ending + 1) < input.size()) && (input.at(ending + 1) == ' ')) || ((ending + 1) == input.size()))
+        //if the ending literal is found with a space at the end or is the
+        //very last item
+        if ((((ending + 1) < input.size()) && (input.at(ending + 1) == ' '))
+                || ((ending + 1) == input.size()))
         {
             token = input.substr(0, (ending + literalList.at(pos).size()));
             input.erase(0, (ending + literalList.at(pos).size()));
@@ -81,7 +83,8 @@ std::string StringParser::get_literal(std::string &input)
     }
     else
     {
-        std::string error = "Error: missing ending literal: " + literalList.at(pos) + "\n";
+        std::string error = "Error: missing ending literal: "
+                + literalList.at(pos) + "\n";
         throw error;
     }
     return token;
@@ -133,7 +136,8 @@ StringParser::StringParser()
 }
 
 StringParser::StringParser(std::vector<std::string> dList,
-                           std::vector<std::string> dIList, std::vector<std::string> literals)
+                           std::vector<std::string> dIList,
+                           std::vector<std::string> literals)
 {
     delimList = dList;
     delimIgnList = dIList;

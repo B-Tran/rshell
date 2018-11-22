@@ -26,10 +26,12 @@ int main()
     std::vector<CMDLine *> allocatedCommands;
 
     std::string theLogin = std::string();
-    char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value defined in limits.h
+    char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value
+    //defined in limits.h
     bool run = true;
 
-    // try to getlogin() //returns a pointer to the username when successful, and NULL on failure
+    // try to getlogin() //returns a pointer to the username when successful,
+    //and NULL on failure
     if (getlogin() == NULL)
     {
         perror("Could not get login");
@@ -37,7 +39,8 @@ int main()
     else
         theLogin = getlogin();
 
-    // try getHostName // On success, zero is returned.  On error, -1 is returned,
+    // try getHostName // On success, zero is returned.
+    //On error, -1 is returned,
     if (gethostname(theHost, HOST_NAME_MAX) == -1)
     {
         perror("Could not get hostname");

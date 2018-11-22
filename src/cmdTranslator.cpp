@@ -47,9 +47,11 @@ CMD *CMDTranslator::make_CMD(std::vector<std::string> &tokenList)
     std::vector<std::string> arguments;
     CMD *cmd = NULL;
 
-    //while the token list is not empty and is is not a connector, and is not a comment
+    //while the token list is not empty and is is not a connector,
+    //and is not a comment
     // then pushes the token into the argument list
-    while (!tokenList.empty() && !is_Connector(tokenList.front()) && !(tokenList.front().find("#") == 0))
+    while (!tokenList.empty() && !is_Connector(tokenList.front())
+           && !(tokenList.front().find("#") == 0))
     {
         remove_literals(tokenList.front());
         arguments.push_back(tokenList.front());
@@ -61,7 +63,8 @@ CMD *CMDTranslator::make_CMD(std::vector<std::string> &tokenList)
     {
         cmd = new Exit();
     }
-    //give the argumentlist to the newly created command object if it is not a exit command
+    //give the argumentlist to the newly created command object if
+    //it is not a exit command
     else
     {
         cmd = new CMD(arguments);
@@ -106,7 +109,8 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
     if (!tokenList.empty() && is_Connector(tokenList.front()))
     {
         const std::string error =
-            "Error : -bash: syntax error near unexpected token " + tokenList.front() + "\n";
+            "Error : -bash: syntax error near unexpected token "
+                + tokenList.front() + "\n";
         throw error;
     }
     //while there are still tokens
@@ -121,7 +125,8 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
             {
                 remove_comment(tokenList);
             }
-            //else if the token is a connector and the previous item is not a connector
+            //else if the token is a connector and the previous item
+            //is not a connector
             //then make a new connector item
             else if (temp == NULL && is_Connector(tokenList.front()))
             {
@@ -138,7 +143,8 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
             else
             {
                 const std::string error2 =
-                    "Error : -bash: syntax error near unexpected token " + tokenList.front() + "\n";
+                    "Error : -bash: syntax error near unexpected token "
+                        + tokenList.front() + "\n";
                 throw error2;
             }
         }
