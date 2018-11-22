@@ -26,13 +26,12 @@ We used the composite design pattern to implemented the program as hierarchy tre
 
 There were several problems we encountered  in the command input.
 
-1. The program won't able to handle string literals in the command input. 
+1. The program might not be able to handle string literals in the command input. 
  
 2. Cd is not part of bin file diectory so cd won't work as a command.  
 
 3. The command input does not handle Parenthesis 
 
-4. 
 
 
 ## Authors & Contributor List
