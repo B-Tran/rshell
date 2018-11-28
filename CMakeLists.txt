@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 ADD_SUBDIRECTORY(googletest)
 
-ADD_EXECUTABLE(rshell 
-	"src/rshell.cpp" 
+ADD_EXECUTABLE(rshell
+	"src/rshell.cpp"
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
@@ -53,7 +53,7 @@ ADD_EXECUTABLE(test
 )
 
 ADD_EXECUTABLE(CMDTest
-	"src/main.cpp" 
+	"src/main.cpp"
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
@@ -77,6 +77,11 @@ ADD_EXECUTABLE(CMDTest
 #	 "src/Semicolon.cpp"
 #	 "src/Exit.cpp"
 #         "src/CMDLine.cpp"
+#)
+
+#ADD_EXECUTABLE(ParserTest
+#		"src/parserMain.cpp"
+#		"src/stringParser.cpp"
 #)
 
 #TARGET_LINK_LIBRARIES(stringParseTest gmock)
