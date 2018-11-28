@@ -4,8 +4,9 @@
 #include "CMD.h"
 #include <cstdlib>
 
-class Exit : public CMD {
-  public:
+class Exit : public CMD
+{
+public:
 	Exit();
 	~Exit();
 	bool execute();

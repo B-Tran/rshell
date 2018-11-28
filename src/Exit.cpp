@@ -8,6 +8,5 @@ Exit::~Exit()
 }
 bool Exit::execute()
 {
-//    std::cout << "EXITING!\n";
-    exit(0); 
+    exit(0);
 }

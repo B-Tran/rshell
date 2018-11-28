@@ -2,10 +2,8 @@
 
 CMDLine::CMDLine()
 {
-
 }
 
 CMDLine::~CMDLine()
 {
-
 }

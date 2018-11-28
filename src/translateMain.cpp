@@ -38,9 +38,12 @@ int main()
     std::vector<CMDLine *> allocatedCommands;
     CMDLine * toExecute = nullptr;
     CMDTranslator translator;
-    try {
+    try 
+    {
         toExecute = translator.translate(tokens,allocatedCommands);
-    } catch (const std::string e) {
+    } 
+    catch (const std::string e) 
+    {
         std::cout << e;
     }
     if(toExecute)
@@ -49,7 +52,8 @@ int main()
         std::cout << "to execute failed\n";
 
     std::cout << "\n";
-    while (!allocatedCommands.empty()) {
+    while (!allocatedCommands.empty()) 
+    {
         delete allocatedCommands.back();
         allocatedCommands.back() = nullptr;
         allocatedCommands.pop_back();

@@ -4,8 +4,8 @@
 #include "cmdTranslator.h"
 #include "unistd.h"
 #include <sys/types.h>
-#include <sys/wait.h>  // wait
-#include <limits.h> // HOST_Name_MAX
+#include <sys/wait.h> // wait
+#include <limits.h>   // HOST_Name_MAX
 #include <cstdlib>
 
 int main()
@@ -20,19 +20,18 @@ int main()
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
-    StringParser parsing(dList,dIList,limiters);
+    StringParser parsing(dList, dIList, limiters);
     std::string input;
     std::vector<std::string> tokens;
     std::vector<CMDLine *> allocatedCommands;
 
     std::string theLogin = std::string();
-    char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value defined in limits.h
+    char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value
+    //defined in limits.h
     bool run = true;
 
-
-
-
-// try to getlogin() //returns a pointer to the username when successful, and NULL on failure
+    // try to getlogin() //returns a pointer to the username when successful,
+    //and NULL on failure
     if (getlogin() == NULL)
     {
         perror("Could not get login");
@@ -40,34 +39,28 @@ int main()
     else
         theLogin = getlogin();
 
-    // try getHostName // On success, zero is returned.  On error, -1 is returned,
+    // try getHostName // On success, zero is returned.
+    //On error, -1 is returned,
     if (gethostname(theHost, HOST_NAME_MAX) == -1)
     {
         perror("Could not get hostname");
     }
     else
     {
-        while(1)
+        while (1)
         {
-            
+
             try
             {
                 std::cout << theLogin << "@" << theHost << "$ ";
-                getline(std::cin,input);
+                getline(std::cin, input);
                 tokens = parsing.parse_string(input);
-                //            std::cout << "token list\n";
-                //            for(size_t i = 0 ; i < tokens.size(); ++i)
-                //            {
-                //                std::cout << tokens.at(i) << "\n";
-                //            }
-                //            std::cout << "\n";
 
-                //            std::cout << "executeing\n";
-                CMDLine * toExecute = NULL;
+                CMDLine *toExecute = NULL;
                 CMDTranslator translator;
-                toExecute = translator.translate(tokens,allocatedCommands);
+                toExecute = translator.translate(tokens, allocatedCommands);
 
-                if(toExecute)
+                if (toExecute)
                 {
                     toExecute->execute();
                 }
@@ -75,22 +68,19 @@ int main()
                 {
                     std::cout << "to execute failed\n";
                 }
-                
-
             }
             catch (const std::string e)
             {
                 std::cout << e;
             }
-        
-//            std::cout << "\n";
-//            std::cout << "here !\n";
-            while (!allocatedCommands.empty()) {
+
+            while (!allocatedCommands.empty())
+            {
                 delete allocatedCommands.back();
                 allocatedCommands.back() = NULL;
                 allocatedCommands.pop_back();
             }
-               
+
         } // end of while(1)
     }
 }
