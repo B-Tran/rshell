@@ -26,7 +26,7 @@ bool TestCmd::execute()
     
     bool flagExist = false;
     bool toExecuted = false;
-    char *flagTestPath = new char();
+    char *flagTestPath;
     std::vector<std::string> storage;
     std::vector<std::string> flags;
       
@@ -48,24 +48,33 @@ bool TestCmd::execute()
     if(arugmentListVector.size() == 2)
     {
         flagExist = true;
+        flagTestPath = new char[arugmentListVector.at(1).size()];
      strcpy(flagTestPath,arugmentListVector.at(1).c_str() );
 
     }
     else if( arugmentListVector.size() == 1)
     { 
     flagExist = false;
+        flagTestPath = new char[arugmentListVector.at(0).size()];
     strcpy(flagTestPath,arugmentListVector.at(0).c_str() );
+    }
+    else if(arugmentListVector.empty())
+    {
+        std::cout << "(True)\n";
+        return true;
     }
     else
     {
-     std::cout << "(false)" << std::endl;
+     std::cout << "(False)" << std::endl;
      return toExecuted; // return false
     }
 
+//    std::cout << "before stat!\n";
 
     if (stat(flagTestPath, &statBuffer) == -1) // check if the stat function fails
      {
-               perror("stat");
+//               perror("stat");
+        std::cout << "(False)\n";
                return toExecuted; // return false
       }
 
@@ -75,23 +84,24 @@ bool TestCmd::execute()
 
  if (flagExist)
     { 
+//     std::cout << "in flag exist!\n";
         if (  arugmentListVector.at(0) == flags.at(0)  && (S_ISDIR(statBuffer.st_mode) || S_ISREG(statBuffer.st_mode) ) ) 
         {
             //std::cout << "inside the S_ISDIR || S_ISREG" << std::endl;
             std::cout << "(True)\n";
-            return toExecuted = true;
+            toExecuted = true;
         }
         else if ( arugmentListVector.at(0) == flags.at(1)  && S_ISREG(statBuffer.st_mode))
         {
            // std::cout << "inside the S_ISREG" << std::endl;
             std::cout << "(True)\n";
-            return toExecuted = true;
+            toExecuted = true;
         }
         else if ( arugmentListVector.at(0) == flags.at(2)  && S_ISDIR(statBuffer.st_mode))
         {
           //  std::cout << "inside the S_ISDIR" << std::endl;
             std::cout << "(True)\n";
-            return toExecuted = true;
+            toExecuted = true;
         }
         // else
         // {
@@ -104,14 +114,16 @@ bool TestCmd::execute()
         { 
               //  std::cout << " noFlag && inside the S_ISDIR || S_ISREG" << std::endl;
                 std::cout << "(True)\n";
-                return toExecuted = true;
+                toExecuted = true;
         }
     else
         {
             std::cout << "(false)" << std::endl;
-                return toExecuted;
         }
-    
+ delete [] flagTestPath;
+ flagTestPath = nullptr;
+// std::cout << "at end of execute!\n";
+ return toExecuted;
 }
    
      // test is an object 

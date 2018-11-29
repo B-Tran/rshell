@@ -9,6 +9,7 @@
 #include "CMDLine.h"
 #include "CMD.h"
 #include "Connector.h"
+#include "TestCmd.h"
 #include <map>
 
 class CMDTranslator
@@ -29,7 +30,7 @@ class CMDTranslator
 
   //makes a test object
   //needs to change later to return a test object
-  void make_Test(std::vector<std::string> &tokenList);
+  TestCmd *make_Test(std::vector<std::string> &tokenList);
   //checks if the token is a beginning parentheses
   bool is_begin_para(const std::string & token);
   //checks if the token is an ending parentheses

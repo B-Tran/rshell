@@ -142,14 +142,25 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
     EXPECT_EQ(testCommand.execute(),0) ;
 }
-// TEST(TESTCMDCLASS, InvaildFlagTest3)
-// {
-    // This TEST case has a issue if the user entered invalid input in 
-    // the beginning vector  
-//     std::vector<std::string> theTest;
-//     theTest.push_back("d;nnvm;lamfl;smd;lasmd;lk");
+ TEST(TESTCMDCLASS, InvaildFlagTest5)
+ {
+//     This TEST case has a issue if the user entered invalid input in
+//     the beginning vector
+     std::vector<std::string> theTest;
+     theTest.push_back("d;nnvm;lamfl;smd;lasmd;lk");
 
-//     TestCmd testCommand(theTest);
+     TestCmd testCommand(theTest);
 
-//     EXPECT_EQ(testCommand.execute(),0) ;
-// }
+     EXPECT_EQ(testCommand.execute(),0) ;
+ }
+
+ TEST(TESTCMDCLASS, EmptyTest)
+ {
+//     This TEST case has a issue if the user entered invalid input in
+//     the beginning vector
+     std::vector<std::string> theTest;
+
+     TestCmd testCommand(theTest);
+
+     EXPECT_EQ(testCommand.execute(),1) ;
+ }

@@ -66,6 +66,7 @@ std::string StringParser::get_literal(std::string &input)
     size_t pos = found_begin_literal(input);
     size_t ending;
     std::string token;
+//    std::cout << "here!";
     if ((ending = input.find(literalList.at(pos), 1)) < input.size())
     {
         //if the ending literal is found with a space at the end or is the
@@ -180,6 +181,7 @@ std::vector<std::string> StringParser::parse_string(std::string input)
     while (!input.empty())
     {
         //if there is a literal at the beginning
+//        std::cout <<"here at beginning of parsing loop!\n";
         if (found_begin_literal(input) < literalList.size())
         {
             token = get_literal(input);

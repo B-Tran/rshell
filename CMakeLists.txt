@@ -16,6 +16,7 @@ ADD_EXECUTABLE(rshell
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
          "src/CMDLine.cpp"
+         "src/TestCmd.cpp"
 	)
 
 #ADD_EXECUTABLE(stringParseTest
@@ -34,6 +35,7 @@ ADD_EXECUTABLE(translateMain
 	"src/Semicolon.cpp"
 	"src/Exit.cpp"
         "src/CMDLine.cpp"
+        "src/TestCmd.cpp"
 )
 ADD_EXECUTABLE(test
 	"tests/test.cpp"
@@ -66,11 +68,12 @@ ADD_EXECUTABLE(CMDTest
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
          "src/CMDLine.cpp"
+         "src/TestCmd.cpp"
 	)
 
 ADD_EXECUTABLE(testcmdMain
-"src/testCmd.cpp"
-"src/testcmdMain.cpp"
+"src/TestCmd.cpp"
+"src/testCmdMain.cpp"
 	"src/cmdTranslator.cpp"
 	"src/stringParser.cpp"
          "src/CMD.cpp"

@@ -4,6 +4,7 @@
 #include "Or.h"
 #include "Semicolon.h"
 #include <cstdlib>
+#include <algorithm>
 
 CMDTranslator::CMDTranslator()
 {
@@ -30,6 +31,7 @@ void ::CMDTranslator::remove_literals(std::string &token)
     size_t pos;
     while (!done)
     {
+//        std::cout << "in here\n";
         if ((pos = token.find("\"")) < token.size())
         {
             token.erase(pos, 1);
@@ -102,16 +104,114 @@ bool CMDTranslator::is_Connector(const std::string &item)
             connectors.end());
 }
 
-void CMDTranslator::make_Test(std::vector<std::string> &tokenList)
+TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
 {
+  TestCmd * testvar = nullptr;
+  std::vector<std::string> argumentList;
+  //if the first token is the word test
   if(tokenList.at(0) == "test" )
   {
+      //erase the first token in the list
+      tokenList.erase(tokenList.begin());
+      //while the tokenlist is not empty and that
+      // the token at the beginning is not a connector or parentheses
+      while (!tokenList.empty() && !is_Connector(tokenList.front()) && !is_begin_para(tokenList.front()) && !is_end_para(tokenList.front()))
+      {
+          //removing literals
+           remove_literals(tokenList.front());
+          //add the token to the argument list
+          argumentList.push_back(tokenList.front());
+          //then remove the token from the token list
+          tokenList.erase(tokenList.begin());
+      }
+
+      //if the argument size is greater than two, throw an error
+      if(argumentList.size() > 2)
+      {
+          std::string error = "bash: test: too many arguments\n";
+          throw error;
+      }
+      //if the size is 2 and that the first items size is 2 or the size is less than or equal to one
+      if((argumentList.size() == 2 && argumentList.at(0).size() == 2) || (argumentList.size() <= 1))
+      {
+          //make the new test command
+          testvar = new TestCmd(argumentList);
+      }
+      else
+      {
+          //there was no flag so
+          //insert the last token of the argument list back to the token list
+          tokenList.insert(tokenList.begin(),argumentList.back());
+          //remove the last argument from the argument list
+          argumentList.pop_back();
+          //make the new test command
+          testvar = new TestCmd(argumentList);
+      }
 
   }
   else
   {
+      //this is for the baracketed version of the test function
+      //remove the beginning bracket
+      tokenList.erase(tokenList.begin());
+      //look for the ending bracked and throw and error if not found
+      if(std::find(tokenList.begin(),tokenList.end()," ]") == tokenList.end())
+      {
+          std::string error = "bash: [: missing `]'";
+          throw error;
+      }
+      else
+      {
+          //if my token list is not empty, and that it is not reached the ending bracket
+          while (!tokenList.empty() && tokenList.front() != " ]")
+          {
+              //if there is a connector or parentheses in between the test brackets,
+              //then throw an error
+              if(is_Connector(tokenList.front()) || is_begin_para(tokenList.front()) || is_end_para(tokenList.front()))
+              {
+                  std::string error = "bash: [: missing `]'";
+                  throw error;
+              }
+              else
+              {
+                  //removing literals
+                   remove_literals(tokenList.front());
+                  //add the token to the argument list
+                  argumentList.push_back(tokenList.front());
+                  //then remove the token from the token list
+                  tokenList.erase(tokenList.begin());
+              }
+          }
 
+          //eraseing the " ]" token from the list
+          tokenList.erase(tokenList.begin());
+
+          //if the argument size is greater than two, throw an error
+                if(argumentList.size() > 2)
+                {
+                    std::string error = "bash: test: too many arguments\n";
+                    throw error;
+                }
+                //if the size is 2 and that the first items size is 2 or the size is less than or equal to one
+                if((argumentList.size() == 2 && argumentList.at(0).size() == 2) || (argumentList.size() <= 1))
+                {
+                    //make the new test command
+                    testvar = new TestCmd(argumentList);
+                }
+                else
+                {
+                    //there was no flag so
+                    //insert the last token of the argument list back to the token list
+                    tokenList.insert(tokenList.begin(),argumentList.back());
+                    //remove the last argument from the argument list
+                    argumentList.pop_back();
+                    //make the new test command
+                    testvar = new TestCmd(argumentList);
+                }
+
+      }
   }
+  return testvar;
 }
 
 //checks if the token is a beginning parentheses
@@ -159,15 +259,15 @@ void CMDTranslator::add_operand(std::vector<std::string> & infix, std::vector<CM
 //   std::cout << "first item: " << infix.at(0) <<  "\n";
   CMDLine * operand = nullptr;
   //if the first token is test or the "[ ", then make a test object
-  // if(infix.at(0) == "test" || infix.at(0) == "[ ")
-  // {
-//    /*operand = */ make_Test(infix);
-  // }
+   if(infix.at(0) == "test" || infix.at(0) == "[ ")
+   {
+        operand = make_Test(infix);
+   }
   //else make a command object
-  // else
-  // {
-    operand = make_CMD(infix);
-  // }
+   else
+   {
+        operand = make_CMD(infix);
+   }
   //add the item to the output and toReturn
   output.push_back(operand);
   toReturn.push_back(operand);
