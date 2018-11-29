@@ -33,7 +33,7 @@ CMD::~CMD()
 void CMD::addArguments(std::vector<std::string> theArugments)
 {
    //if there was a agrument list that was already created
-   //delete the current argumetn list
+   //delete the current argument list
    if (argumentList)
    {
       for (int i = 0; i < argumentCount; i++)
@@ -53,9 +53,10 @@ void CMD::addArguments(std::vector<std::string> theArugments)
       strcpy(argumentList[i], theArugments.at(i).c_str());
    }
    argumentList[theArugments.size()] = NULL; // Indicates the end of arguments
+ 
 }
 bool CMD::execute()
-{
+{  
 
    bool theExecuted = true;
    // Create a child process of datatype of process id
