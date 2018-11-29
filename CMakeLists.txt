@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 ADD_SUBDIRECTORY(googletest)
 
-ADD_EXECUTABLE(rshell 
-	"src/rshell.cpp" 
+ADD_EXECUTABLE(rshell
+	"src/rshell.cpp"
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
@@ -16,6 +16,7 @@ ADD_EXECUTABLE(rshell
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
          "src/CMDLine.cpp"
+         "src/TestCmd.cpp"
 	)
 
 #ADD_EXECUTABLE(stringParseTest
@@ -34,13 +35,14 @@ ADD_EXECUTABLE(translateMain
 	"src/Semicolon.cpp"
 	"src/Exit.cpp"
         "src/CMDLine.cpp"
+        "src/TestCmd.cpp"
 )
-
 ADD_EXECUTABLE(test
 	"tests/test.cpp"
 	"tests/stringParseTest.cpp"
-	"src/stringParser.cpp"
 	"tests/CMDTest.cpp"
+	"tests/testCmd.cpp"
+	"src/stringParser.cpp"
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
@@ -49,11 +51,12 @@ ADD_EXECUTABLE(test
 	 "src/And.cpp"
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
-         "src/CMDLine.cpp"
+     "src/CMDLine.cpp"
+     "src/TestCmd.cpp"
 )
 
 ADD_EXECUTABLE(CMDTest
-	"src/main.cpp" 
+	"src/main.cpp"
 	"src/stringParser.cpp"
 	"src/CMD.cpp"
 	 "src/cmdTranslator.cpp"
@@ -65,7 +68,22 @@ ADD_EXECUTABLE(CMDTest
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
          "src/CMDLine.cpp"
+         "src/TestCmd.cpp"
 	)
+
+ADD_EXECUTABLE(testcmdMain
+"src/TestCmd.cpp"
+"src/testCmdMain.cpp"
+	"src/cmdTranslator.cpp"
+	"src/stringParser.cpp"
+         "src/CMD.cpp"
+        "src/Connector.cpp"
+	"src/Or.cpp"
+        "src/And.cpp"
+	"src/Semicolon.cpp"
+	"src/Exit.cpp"
+        "src/CMDLine.cpp"
+)
 #ADD_EXECUTABLE(CommandsTest
 #	"tests/CMDTest.cpp"
 #	"src/stringParser.cpp"
@@ -77,6 +95,11 @@ ADD_EXECUTABLE(CMDTest
 #	 "src/Semicolon.cpp"
 #	 "src/Exit.cpp"
 #         "src/CMDLine.cpp"
+#)
+
+#ADD_EXECUTABLE(ParserTest
+#		"src/parserMain.cpp"
+#		"src/stringParser.cpp"
 #)
 
 #TARGET_LINK_LIBRARIES(stringParseTest gmock)

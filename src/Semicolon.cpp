@@ -2,8 +2,8 @@
 #include <cstdlib>
 Semicolon::Semicolon()
 {
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
 }
 Semicolon::Semicolon(CMDLine *left, CMDLine *right) : Connector(left, right)
 {
