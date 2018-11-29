@@ -10,6 +10,9 @@ CMDTranslator::CMDTranslator()
     connectors.push_back("&&");
     connectors.push_back("||");
     connectors.push_back(";");
+    precedenceMap["&&"] = 3;
+    precedenceMap["||"] = 3;
+    precedenceMap[";"] = 3;
 }
 
 CMDTranslator::~CMDTranslator()
@@ -51,7 +54,7 @@ CMD *CMDTranslator::make_CMD(std::vector<std::string> &tokenList)
     //and is not a comment
     // then pushes the token into the argument list
     while (!tokenList.empty() && !is_Connector(tokenList.front())
-           && !(tokenList.front().find("#") == 0))
+           && !(tokenList.front().find("#") == 0) && !is_begin_para(tokenList.front()) && !is_end_para(tokenList.front()) )
     {
         remove_literals(tokenList.front());
         arguments.push_back(tokenList.front());
@@ -99,97 +102,452 @@ bool CMDTranslator::is_Connector(const std::string &item)
             connectors.end());
 }
 
+void CMDTranslator::make_Test(std::vector<std::string> &tokenList)
+{
+  if(tokenList.at(0) == "test" )
+  {
+
+  }
+  else
+  {
+
+  }
+}
+
+//checks if the token is a beginning parentheses
+bool CMDTranslator::is_begin_para(const std::string & token)
+{
+  return (token == "(");
+}
+//checks if the token is an ending parentheses
+bool CMDTranslator::is_end_para(const std::string & token)
+{
+  return (token == ")");
+}
+
+bool CMDTranslator::is_valid_operand(const bool & isStart, const bool & isConnector, const bool & isBeginPara)
+{
+  //an operand is valid if and only if that the item that came before it is a connector,
+  // a beginning parentheses, or that it is the starting item
+  return (isStart || isConnector || isBeginPara);
+}
+
+bool CMDTranslator::is_valid_operator(const bool & isStart, const bool & isConnector, const bool & isBeginPara)
+{
+  //an operator is valid if and only if that the item that came before it is not another
+  // connector, not a beginning parentheses, and is not starting at the beginning
+  return (!isStart && !isConnector && !isBeginPara);
+}
+
+bool CMDTranslator::is_valid_begin_para(const bool & isStart, const bool & isConnector, const bool & isBeginPara)
+{
+  //a beginning parentheses is valid if and only if that the item that came
+  // before it is an operator, another begining parentheses, or is the starting item
+  return (isStart || isConnector || isBeginPara);
+}
+
+bool CMDTranslator::is_valid_end_para(const bool & isStart, const bool & isConnector, const bool & isBeginPara)
+{
+  //an ending parentheses is valid if and only if that the item that came
+  // before it is not a connector, not a beginning parentheses, and is not the starting item
+  return (!isStart && !isConnector && !isBeginPara);
+}
+
+void CMDTranslator::add_operand(std::vector<std::string> & infix, std::vector<CMDLine *> & output, std::vector<CMDLine *> & toReturn)
+{
+//   std::cout << "adding operand!" << '\n';
+//   std::cout << "first item: " << infix.at(0) <<  "\n";
+  CMDLine * operand = nullptr;
+  //if the first token is test or the "[ ", then make a test object
+  // if(infix.at(0) == "test" || infix.at(0) == "[ ")
+  // {
+//    /*operand = */ make_Test(infix);
+  // }
+  //else make a command object
+  // else
+  // {
+    operand = make_CMD(infix);
+  // }
+  //add the item to the output and toReturn
+  output.push_back(operand);
+  toReturn.push_back(operand);
+}
+
+void CMDTranslator::add_operator(std::vector<std::string> & infix, std::vector<CMDLine *> & output, std::vector<CMDLine *> & toReturn, std::vector<std::string> & operatorStack)
+{
+//  std::cout << "adding operator!" << '\n';
+//    std::cout << "operand stack: ";
+//    for(size_t i = 0; i < operatorStack.size(); ++i)
+//    {
+//        std::cout << operatorStack.at(i) << " ";
+//    }
+//    std::cout << "\n";
+  std::string Operator = infix.at(0);
+  infix.erase(infix.begin());
+  std::string OperatorTemp;
+  Connector * temp = nullptr;
+  //if
+  //  the operatorStack is empty, then add the operator to the operatorStack
+  // and remove it from the infix
+  if(operatorStack.empty())
+  {
+    operatorStack.push_back(Operator);
+  }
+  //else if
+  //  the new operator token has a precedence greater than that of the operator
+  //that is on the top of the stack or that the top of the operatorStack is the
+  // beginning parentheses, then add it to the operatorStack and remove it from
+  // the infix
+  else if(((precedenceMap.count(Operator) && precedenceMap.count(operatorStack.back())) && precedenceMap.at(Operator) >  precedenceMap.at(operatorStack.back())) || is_begin_para(operatorStack.back()))
+  {
+    operatorStack.push_back(Operator);
+  }
+  //else
+  else
+  {
+    //while
+    // the new operator's precedence is less than or equal to the precedence
+    //of the top of the stack and that the top of the stack is not a beginning
+    // parentheses and that the operatorStack is not empty,
+    while(!operatorStack.empty() && ((precedenceMap.count(Operator) && precedenceMap.count(operatorStack.back()) && precedenceMap.at(Operator) <= precedenceMap.at(Operator)) || !is_begin_para(operatorStack.back())))
+    {
+//        std::cout << "stack size: " << operatorStack.size() << "\n";
+//        std::cout << "top of operator stack: " << operatorStack.back() << "\n";
+      //create a operator object from the top of the stack
+        temp = make_connector(operatorStack.back());
+      // with the last two items added to the output as its children, then add the
+        if(output.size() >= 2)
+        {
+            temp->setRight(output.back());
+            output.pop_back();
+            temp->setLeft(output.back());
+            output.pop_back();
+        }
+        else
+        {
+            std::string error = "Error : -bash: syntax error near unexpected token "
+                    + operatorStack.back() + "\n";
+            throw error;
+        }
+
+        // pop the top operator from the stack and
+          operatorStack.pop_back();
+
+      // newly made object into the output and toReturn.
+        output.push_back(temp);
+        toReturn.push_back(temp);
+        temp = nullptr;
+
+    }
+    //
+    //Then add the new operator
+    // to the operatorStack and remove it from the infix
+    operatorStack.push_back(Operator);
+  }
+
+}
+
+void CMDTranslator::add_begin_para(std::vector<std::string> & infix, std::vector<std::string> & operatorStack)
+{
+//  std::cout << "to be made" << '\n';
+  //adds a beginning parentheses token to the operatorStack
+  operatorStack.push_back(infix.at(0));
+  //removes it from the infix
+  infix.erase(infix.begin());
+}
+
+void CMDTranslator::add_end_para(std::vector<std::string> & infix, std::vector<CMDLine *> & output, std::vector<CMDLine *> &toReturn, std::vector<std::string> & operatorStack)
+{
+    Connector * temp = nullptr;
+  //while the operatorStack is not empty and that the top of the stack is not a
+  // begining parentheses,
+    while(!operatorStack.empty() && !is_begin_para(operatorStack.back()))
+    {
+        //create a operator object from the top of the stack
+          temp = make_connector(operatorStack.back());
+        // with the last two items added to the output as its children, then add the
+          if(output.size() >= 2)
+          {
+              temp->setRight(output.back());
+              output.pop_back();
+              temp->setLeft(output.back());
+              output.pop_back();
+          }
+          else
+          {
+              std::string error = "Error : -bash: syntax error near unexpected token "
+                      + operatorStack.back() + "\n";
+              throw error;
+          }
+
+          // pop the top operator from the stack and
+            operatorStack.pop_back();
+
+        // newly made object into the output and toReturn.
+          output.push_back(temp);
+          toReturn.push_back(temp);
+          temp = nullptr;
+    }
+
+  //then
+  //if
+  // the operatorStack is empty, then throw an error, as the user did not
+  // enter the correct number of beginning and ending parentheses
+    if(operatorStack.empty())
+    {
+        std::string error = "bash: syntax error near unexpected token `)'";
+        throw error;
+    }
+  //else
+    else
+    {
+        // pop the top of the operatorStack for the beginning parentheses and
+        // remove the ending parentheses from the infix
+        operatorStack.pop_back();
+        infix.erase(infix.begin());
+    }
+}
+
+Connector *CMDTranslator::make_connector(const std::string & token)
+{
+  Connector *newConnector = NULL;
+  if (token == connectors.at(0))
+  {
+      newConnector = new And();
+  }
+  else if (token == connectors.at(1))
+  {
+      newConnector = new Or();
+  }
+  else
+  {
+      newConnector = new Semicolon();
+  }
+
+  return newConnector;
+}
+
 CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
                                   std::vector<CMDLine *> &returnList)
 {
-    CMDLine *toReturn = NULL;
-    std::vector<CMDLine *> items;
-    Connector *temp = NULL;
+    CMDLine *toReturn = nullptr;
+    std::vector<CMDLine *> output;
+    std::vector<std::string> operatorStack;
+    Connector *temp = nullptr;
 
-    if (!tokenList.empty() && is_Connector(tokenList.front()))
-    {
-        const std::string error =
-            "Error : -bash: syntax error near unexpected token "
-                + tokenList.front() + "\n";
-        throw error;
-    }
-    //while there are still tokens
+    bool isStart = true;        //at the beginning of the infix input
+    bool isConnector = false;   //if the lst item was a connector
+    bool isBeginPara = false;   //if the last item was a beginning parentheses
+
     while (!tokenList.empty())
     {
-        //if there is less than 2 items to connect
-        if (items.size() < 2)
+//        std::cout << "token list front: " << tokenList.front() << "\n";
+//        std::cout << (is_end_para(tokenList.at(0))/* && is_valid_end_para(isStart,isConnector,isBeginPara)*/) << "\n";
+        //if it is a comment at the front
+        //then erase all the tokens in the list
+        if (tokenList.front().find("#") == 0)
         {
-            //if it is a comment at the front
-            //then erase all the tokens in the list
-            if (tokenList.front().find("#") == 0)
+            remove_comment(tokenList);
+        }
+        //else if the token is a valid beginning parentheses
+        else if(is_begin_para(tokenList.at(0)) && is_valid_begin_para(isStart,isConnector,isBeginPara))
+        {
+            add_begin_para(tokenList,operatorStack);
+            isStart = false;
+            isConnector = false;
+            isBeginPara = true;
+        }
+        //else if the token is a valid ending parentheses
+        else if (is_end_para(tokenList.at(0)) && is_valid_end_para(isStart,isConnector,isBeginPara))
+        {
+            add_end_para(tokenList,output, returnList,operatorStack);
+            isStart = false;
+            isConnector = false;
+            isBeginPara = false;
+        }
+        //else if the token is a valid connector
+        else if (is_Connector(tokenList.at(0)) && is_valid_operator(isStart,isConnector,isBeginPara))
+        {
+            add_operator(tokenList,output,returnList,operatorStack);
+            isStart = false;
+            isConnector = true;
+            isBeginPara = false;
+        }
+        //else if the token is a valid operand/command
+        else if(!is_begin_para(tokenList.at(0)) && !is_end_para(tokenList.at(0)) && !is_Connector(tokenList.at(0)) && is_valid_operand(isStart,isConnector,isBeginPara))
+        {
+            add_operand(tokenList,output,returnList);
+            isStart = false;
+            isConnector = false;
+            isBeginPara = false;
+        }
+        else
+        {
+            std::cout << "in here!\n";
+            const std::string error2 =
+                "Error : -bash: syntax error near unexpected token "
+                    + tokenList.front() + "\n";
+            throw error2;
+        }
+    }
+
+    while (!operatorStack.empty())
+    {
+        //if there is there is more than one item in the operand stack and that the output size >=2
+        if((operatorStack.size() >= 1 && output.size() >= 2) /*|| (operatorStack.size() == 1 && output.size() == 2)*/)
+        {
+            //create a operator object from the top of the stack
+              temp = make_connector(operatorStack.back());
+
+            // with the last two items added to the output as its children, then add the
+                  temp->setRight(output.back());
+                  output.pop_back();
+                  temp->setLeft(output.back());
+                  output.pop_back();
+
+              // pop the top operator from the stack and
+                operatorStack.pop_back();
+
+            // newly made object into the output and toReturn.
+              output.push_back(temp);
+              returnList.push_back(temp);
+              temp = nullptr;
+        }
+        else if (operatorStack.size() == 1 && output.size() == 1)
+        {
+            if(operatorStack.back() == ";")
             {
-                remove_comment(tokenList);
+                //create a operator object from the top of the stack
+                temp = make_connector(operatorStack.back());
+
+                temp->setLeft(output.back());
+                output.pop_back();
+
+                // pop the top operator from the stack and
+                  operatorStack.pop_back();
+
+                  // newly made object into the output and toReturn.
+                    output.push_back(temp);
+                    returnList.push_back(temp);
+                    temp = nullptr;
             }
-            //else if the token is a connector and the previous item
-            //is not a connector
-            //then make a new connector item
-            else if (temp == NULL && is_Connector(tokenList.front()))
-            {
-                temp = make_connector(tokenList);
-                returnList.push_back(temp);
-            }
-            //else if the token not a connector, then create a command
-            else if (!is_Connector(tokenList.front()))
-            {
-                items.push_back(make_CMD(tokenList));
-                returnList.push_back(items.back());
-            }
-            //else it is an invalid statement and should throw and error
             else
             {
                 const std::string error2 =
                     "Error : -bash: syntax error near unexpected token "
-                        + tokenList.front() + "\n";
+                        + operatorStack.front() + "\n";
                 throw error2;
             }
         }
         else
         {
-            //settting the left and right children of the connector
-            //and add it to the item list
-            temp->setRight(items.back());
-            items.pop_back();
-            temp->setLeft(items.back());
-            items.pop_back();
-            items.push_back(temp);
-            temp = NULL;
+            const std::string error2 =
+                "Error : -bash: syntax error near unexpected token "
+                    + operatorStack.front() + "\n";
+            throw error2;
         }
     }
 
-    //if there is still a connector and one item left
-    if (temp && (items.size() == 1))
+    if(output.size() > 1)
     {
-        temp->setLeft(items.back());
-        items.pop_back();
-        toReturn = temp;
+        const std::string error2 =
+            "Error : -bash: syntax error\n";
+        throw error2;
     }
-    //if there is still a connector and two itms left
-    else if (temp && (items.size() == 2))
-    {
-        temp->setRight(items.back());
-        items.pop_back();
-        temp->setLeft(items.back());
-        items.pop_back();
-        toReturn = temp;
-    }
-    //if there was only a command
-    else if (!temp && (items.size() == 1))
-    {
-        toReturn = items.back();
-        items.pop_back();
-    }
-    //the line had nothing in the first place
-    else
+    else if(output.size() < 1)
     {
         std::vector<std::string> emptyArg;
         toReturn = new CMD(emptyArg);
         returnList.push_back(toReturn);
     }
-
+    else
+    {
+        toReturn = output.back();
+    }
     return toReturn;
 }
+
+//    if (!tokenList.empty() && is_Connector(tokenList.front()))
+//    {
+//        const std::string error =
+//            "Error : -bash: syntax error near unexpected token "
+//                + tokenList.front() + "\n";
+//        throw error;
+//    }
+//    //while there are still tokens
+//    while (!tokenList.empty())
+//    {
+//        //if there is less than 2 items to connect
+//        if (items.size() < 2)
+//        {
+//            //if it is a comment at the front
+//            //then erase all the tokens in the list
+//            if (tokenList.front().find("#") == 0)
+//            {
+//                remove_comment(tokenList);
+//            }
+//            //else if the token is a connector and the previous item
+//            //is not a connector
+//            //then make a new connector item
+//            else if (temp == NULL && is_Connector(tokenList.front()))
+//            {
+//                temp = make_connector(tokenList);
+//                returnList.push_back(temp);
+//            }
+//            //else if the token not a connector, then create a command
+//            else if (!is_Connector(tokenList.front()))
+//            {
+//                items.push_back(make_CMD(tokenList));
+//                returnList.push_back(items.back());
+//            }
+//            //else it is an invalid statement and should throw and error
+//            else
+//            {
+//                const std::string error2 =
+//                    "Error : -bash: syntax error near unexpected token "
+//                        + tokenList.front() + "\n";
+//                throw error2;
+//            }
+//        }
+//        else
+//        {
+//            //settting the left and right children of the connector
+//            //and add it to the item list
+//            temp->setRight(items.back());
+//            items.pop_back();
+//            temp->setLeft(items.back());
+//            items.pop_back();
+//            items.push_back(temp);
+//            temp = NULL;
+//        }
+//    }
+
+//    //if there is still a connector and one item left
+//    if (temp && (items.size() == 1))
+//    {
+//        temp->setLeft(items.back());
+//        items.pop_back();
+//        toReturn = temp;
+//    }
+//    //if there is still a connector and two itms left
+//    else if (temp && (items.size() == 2))
+//    {
+//        temp->setRight(items.back());
+//        items.pop_back();
+//        temp->setLeft(items.back());
+//        items.pop_back();
+//        toReturn = temp;
+//    }
+//    //if there was only a command
+//    else if (!temp && (items.size() == 1))
+//    {
+//        toReturn = items.back();
+//        items.pop_back();
+//    }
+//    //the line had nothing in the first place
+//    else
+//    {
+//        std::vector<std::string> emptyArg;
+//        toReturn = new CMD(emptyArg);
+//        returnList.push_back(toReturn);
+//    }
