@@ -5,89 +5,90 @@
 
 CMD::CMD()
 {
-   argumentList = NULL;
-   argumentCount = 0;
+    argumentList = nullptr;
+    argumentCount = 0;
 }
 
 CMD::CMD(CMDLine *commandArg)
 {
-   this->commandArg = commandArg;
+    this->commandArg = commandArg;
 }
 CMD::CMD(std::vector<std::string> theArugments)
 {
-   argumentList = NULL;
-   argumentCount = 0;
-   this->addArguments(theArugments);
+    argumentList = nullptr;
+    argumentCount = 0;
+    this->addArguments(theArugments);
 }
 CMD::~CMD()
 {
 
-   for (int i = 0; i < argumentCount; i++)
-   {
-      delete[] argumentList[i];
-   }
-   delete[] argumentList;
+    for (int i = 0; i < argumentCount; i++)
+    {
+        delete[] argumentList[i];
+    }
+    delete[] argumentList;
 
-   argumentCount = 0;
+    argumentCount = 0;
 }
 void CMD::addArguments(std::vector<std::string> theArugments)
 {
-   //if there was a agrument list that was already created
-   //delete the current argument list
-   if (argumentList)
-   {
-      for (int i = 0; i < argumentCount; i++)
-      {
-         delete[] argumentList[i];
-      }
-      delete[] argumentList;
-      argumentCount = 0;
-   }
+    //if there was a agrument list that was already created
+    //delete the current argument list
+    if (argumentList)
+    {
+        for (int i = 0; i < argumentCount; i++)
+        {
+            delete[] argumentList[i];
+        }
+        delete[] argumentList;
+        argumentCount = 0;
+    }
 
-   argumentList = new char *[theArugments.size() + 1];
-   argumentCount = theArugments.size() + 1;
+    argumentList = new char *[theArugments.size() + 1];
+    argumentCount = theArugments.size() + 1;
 
-   for (size_t i = 0; i < theArugments.size(); i++)
-   {
-      argumentList[i] = new char[theArugments.at(i).size() + 1];
-      strcpy(argumentList[i], theArugments.at(i).c_str());
-   }
-   argumentList[theArugments.size()] = NULL; // Indicates the end of arguments
- 
+    for (size_t i = 0; i < theArugments.size(); i++)
+    {
+        argumentList[i] = new char[theArugments.at(i).size() + 1];
+        strcpy(argumentList[i], theArugments.at(i).c_str());
+    }
+    // Indicates the end of arguments
+    argumentList[theArugments.size()] = nullptr;
+
 }
 bool CMD::execute()
 {  
 
-   bool theExecuted = true;
-   // Create a child process of datatype of process id
-   pid_t pid = fork();
-   int status = 0;
-   if (pid == 0)
-   {
-      if (execvp(argumentList[0], argumentList) == -1)
-      {
-         perror("Command not found");
-         //kill the function if the child fails
-         _exit(69);
-      }
-   }
-   else if (pid == -1) // if fork fails
-   {
-      perror("problem forking"); // run error checking
-      return false;
-   }
+    bool theExecuted = true;
+    // Create a child process of datatype of process id
+    pid_t pid = fork();
+    int status = 0;
+    if (pid == 0)
+    {
+        if (execvp(argumentList[0], argumentList) == -1)
+        {
+            perror("Command not found");
+            //kill the function if the child fails
+            _exit(69);
+        }
+    }
+    else if (pid == -1) // if fork fails
+    {
+        perror("problem forking"); // run error checking
+        return false;
+    }
 
-   else
-   {     // parent process id
-      if (waitpid(pid, &status, 0) == -1)
-      {
-         perror("wait");
-      }
-   }
-   if (WEXITSTATUS(status) != 0)
-   {
-      theExecuted = false;
-   }
+    else
+    {     // parent process id
+        if (waitpid(pid, &status, 0) == -1)
+        {
+            perror("wait");
+        }
+    }
+    if (WEXITSTATUS(status) != 0)
+    {
+        theExecuted = false;
+    }
 
-   return theExecuted;
+    return theExecuted;
 }

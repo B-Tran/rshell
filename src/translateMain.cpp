@@ -39,6 +39,7 @@ int main()
     for(size_t i = 0 ; i < tokens.size(); ++i)
     {
 	    std::cout << tokens.at(i) << "\n";
+        std::cout << "size: " << tokens.at(i).size() << "\n";
     }
     std::cout << "\n";
     

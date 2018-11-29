@@ -36,24 +36,40 @@ class CMDTranslator
   //checks if the token is an ending parentheses
   bool is_end_para(const std::string & token);
   //check if operand is valid
-  bool is_valid_operand(const bool & isStart, const bool & isConnector, const bool & isBeginPara);
+  bool is_valid_operand(const bool & isStart,
+                        const bool & isConnector,
+                        const bool & isBeginPara);
   //check if operator is is valid
-  bool is_valid_operator(const bool & isStart, const bool & isConnector, const bool & isBeginPara);
+  bool is_valid_operator(const bool & isStart,
+                         const bool & isConnector,
+                         const bool & isBeginPara);
   //check if begining parentheses is valid
-  bool is_valid_begin_para(const bool & isStart, const bool & isConnector, const bool & isBeginPara);
+  bool is_valid_begin_para(const bool & isStart,
+                           const bool & isConnector,
+                           const bool & isBeginPara);
   //check if ending parentheses is valid
-  bool is_valid_end_para(const bool & isStart, const bool & isConnector, const bool & isBeginPara);
+  bool is_valid_end_para(const bool & isStart, const bool & isConnector,
+                         const bool & isBeginPara);
   //adding an operand object to the output(RPN)
   //gets the infixed input
   //gets the output
   //gets the items made
-  void add_operand(std::vector<std::string> & infix, std::vector<CMDLine *> & output, std::vector<CMDLine *> & toReturn);
+  void add_operand(std::vector<std::string> & infix,
+                   std::vector<CMDLine *> & output,
+                   std::vector<CMDLine *> & toReturn);
   //adding an operator object to the operatorStack if possible from the input
-  void add_operator(std::vector<std::string> & infix, std::vector<CMDLine *> & output, std::vector<CMDLine *> & toReturn, std::vector<std::string> & operatorStack);
+  void add_operator(std::vector<std::string> & infix,
+                    std::vector<CMDLine *> & output,
+                    std::vector<CMDLine *> & toReturn,
+                    std::vector<std::string> & operatorStack);
   //adding a beginning parentheses object to the operatorStack if possible
-  void add_begin_para(std::vector<std::string> & infix, std::vector<std::string> & operatorStack);
+  void add_begin_para(std::vector<std::string> & infix,
+                      std::vector<std::string> & operatorStack);
   //adding and ending parentheses object to the operatorStack if possible
-  void add_end_para(std::vector<std::string> & infix, std::vector<CMDLine *> & output, std::vector<CMDLine *> & toReturn, std::vector<std::string> & operatorStack);
+  void add_end_para(std::vector<std::string> & infix,
+                    std::vector<CMDLine *> & output,
+                    std::vector<CMDLine *> & toReturn,
+                    std::vector<std::string> & operatorStack);
   //makes a connector object from the token given
   Connector *make_connector(const std::string & token);
   public:

@@ -3,8 +3,8 @@
 
 Connector::Connector()
 {
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
 }
 Connector::Connector(CMDLine *left, CMDLine *right)
 {

@@ -100,7 +100,8 @@ size_t StringParser::found_begin_delim(const std::string &input)
 //        std::cout << "checking for finding: " <<
 //        (input.find(delimList.at(i))) << "\n";
         if(input.find(delimList.at(i)) == 0 && ((pos < delimList.size() &&
-        delimList.at(pos).size() < delimList.at(i).size()) || pos == delimList.size()))
+        delimList.at(pos).size() < delimList.at(i).size()) ||
+                                                pos == delimList.size()))
         {
 //            std::cout << "found delim: " << i << "\n";
             //if a delimiter was found before but it is smaller in size
