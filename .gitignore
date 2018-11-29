@@ -13,3 +13,4 @@ CMDTest
 CommandsTest
 test
 ParserTest
+testcmdMain

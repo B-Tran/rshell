@@ -128,7 +128,7 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
       //if the argument size is greater than two, throw an error
       if(argumentList.size() > 2)
       {
-          std::string error = "bash: test: too many arguments\n";
+          std::string error = "rshell: test: too many arguments\n";
           throw error;
       }
       //if the size is 2 and that the first items size is 2 or the size is less than or equal to one
@@ -157,7 +157,7 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
       //look for the ending bracked and throw and error if not found
       if(std::find(tokenList.begin(),tokenList.end()," ]") == tokenList.end())
       {
-          std::string error = "bash: [: missing `]'";
+          std::string error = "rshell: [: missing `]'\n";
           throw error;
       }
       else
@@ -169,7 +169,7 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
               //then throw an error
               if(is_Connector(tokenList.front()) || is_begin_para(tokenList.front()) || is_end_para(tokenList.front()))
               {
-                  std::string error = "bash: [: missing `]'";
+                  std::string error = "rshell: [: missing `]'\n";
                   throw error;
               }
               else
@@ -189,7 +189,7 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
           //if the argument size is greater than two, throw an error
                 if(argumentList.size() > 2)
                 {
-                    std::string error = "bash: test: too many arguments\n";
+                    std::string error = "rshell: test: too many arguments\n";
                     throw error;
                 }
                 //if the size is 2 and that the first items size is 2 or the size is less than or equal to one
@@ -325,7 +325,7 @@ void CMDTranslator::add_operator(std::vector<std::string> & infix, std::vector<C
         }
         else
         {
-            std::string error = "Error : -bash: syntax error near unexpected token "
+            std::string error = "Error : -rshell: syntax error near unexpected token "
                     + operatorStack.back() + "\n";
             throw error;
         }
@@ -375,7 +375,7 @@ void CMDTranslator::add_end_para(std::vector<std::string> & infix, std::vector<C
           }
           else
           {
-              std::string error = "Error : -bash: syntax error near unexpected token "
+              std::string error = "Error : -rshell: syntax error near unexpected token "
                       + operatorStack.back() + "\n";
               throw error;
           }
@@ -395,7 +395,7 @@ void CMDTranslator::add_end_para(std::vector<std::string> & infix, std::vector<C
   // enter the correct number of beginning and ending parentheses
     if(operatorStack.empty())
     {
-        std::string error = "bash: syntax error near unexpected token `)'";
+        std::string error = "rshell: syntax error near unexpected token `)'";
         throw error;
     }
   //else
@@ -483,9 +483,9 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
         }
         else
         {
-            std::cout << "in here!\n";
+//            std::cout << "in here!\n";
             const std::string error2 =
-                "Error : -bash: syntax error near unexpected token "
+                "Error : -rshell: syntax error near unexpected token "
                     + tokenList.front() + "\n";
             throw error2;
         }
@@ -534,7 +534,7 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
             else
             {
                 const std::string error2 =
-                    "Error : -bash: syntax error near unexpected token "
+                    "Error : -rshell: syntax error near unexpected token "
                         + operatorStack.front() + "\n";
                 throw error2;
             }
@@ -542,7 +542,7 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
         else
         {
             const std::string error2 =
-                "Error : -bash: syntax error near unexpected token "
+                "Error : -rshell: syntax error near unexpected token "
                     + operatorStack.front() + "\n";
             throw error2;
         }
@@ -551,7 +551,7 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
     if(output.size() > 1)
     {
         const std::string error2 =
-            "Error : -bash: syntax error\n";
+            "Error : -rshell: syntax error\n";
         throw error2;
     }
     else if(output.size() < 1)
