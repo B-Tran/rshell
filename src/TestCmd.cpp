@@ -58,11 +58,11 @@ bool TestCmd::execute()
         flagTestPath = new char[arugmentListVector.at(0).size()];
     strcpy(flagTestPath,arugmentListVector.at(0).c_str() );
     }
-    else if(arugmentListVector.empty())
-    {
-        std::cout << "(True)\n";
-        return true;
-    }
+//    else if(arugmentListVector.empty())
+//    {
+//        std::cout << "(True)\n";
+//        return true;
+//    }
     else
     {
      std::cout << "(False)" << std::endl;
