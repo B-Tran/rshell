@@ -1,4 +1,5 @@
 #include "TestCmd.h"
+#include <algorithm>
 
 TestCmd::TestCmd()
 {
@@ -43,16 +44,46 @@ bool TestCmd::execute()
 
     if(arugmentListVector.size() == 2)
     {
-        flagExist = true;
-        flagTestPath = new char[arugmentListVector.at(1).size()];
-        strcpy(flagTestPath,arugmentListVector.at(1).c_str() );
+        if(std::find(flags.begin(),flags.end(),arugmentListVector.at(1)) !=
+                flags.end())
+        {
+            flagExist = true;
+            flagTestPath = new char[arugmentListVector.at(1).size()];
+            strcpy(flagTestPath,arugmentListVector.at(1).c_str() );
+        }
+        else
+        {
+            std::string error = "test: invalid option -- '" +
+                    arugmentListVector.at(0) + "'\n";
+            throw error;
+        }
 
     }
-    else if( arugmentListVector.size() == 1)
+    else if( arugmentListVector.size() == 1 )
     {
-        flagExist = false;
-        flagTestPath = new char[arugmentListVector.at(0).size()];
-        strcpy(flagTestPath,arugmentListVector.at(0).c_str() );
+        if(arugmentListVector.front().size() == 2 &&
+                arugmentListVector.at(0).find("-") == 0 &&
+                std::find(flags.begin(),flags.end(),arugmentListVector.at(0)) ==
+                flags.end())
+        {
+            std::string error = "test: invalid option -- '" +
+                    arugmentListVector.at(0) + "'\n";
+            throw error;
+        }
+        else if (arugmentListVector.front().size() == 2 &&
+                 arugmentListVector.at(0).find("-") == 0 &&
+                 std::find(flags.begin(),flags.end(),arugmentListVector.at(0))
+                 != flags.end())
+        {
+            std::cout << "(False)" << std::endl;
+            return toExecuted; // return false
+        }
+        else
+        {
+            flagExist = false;
+            flagTestPath = new char[arugmentListVector.at(0).size()];
+            strcpy(flagTestPath,arugmentListVector.at(0).c_str() );
+        }
     }
     else
     {

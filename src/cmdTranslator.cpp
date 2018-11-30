@@ -158,7 +158,18 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
         //this is for the baracketed version of the test function
         //remove the beginning bracket
         tokenList.erase(tokenList.begin());
-        if(!tokenList.empty() && tokenList.front() == "]")
+
+        //if there are special cases
+        if(tokenList.size() >= 2 && ((tokenList.at(0) == "]" &&
+                 tokenList.at(1) == " ]" ) || (tokenList.at(0) == "[ " &&
+                                               tokenList.at(1) == "]")))
+        {
+            argumentList.push_back(tokenList.front());
+            tokenList.erase(tokenList.begin());
+            tokenList.erase(tokenList.begin());
+            testvar = new TestCmd(argumentList);
+        }
+        else if(tokenList.size() == 1 && tokenList.front() == "]")
         {
             tokenList.erase(tokenList.begin());
             testvar = new TestCmd(argumentList);
@@ -208,7 +219,8 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
             }
             //if the size is 2 and that the first items size is 2 or the
             // size is less than or equal to one
-            if((argumentList.size() == 2 && argumentList.at(0).size() == 2)
+            if((argumentList.size() == 2 && argumentList.at(0).size() == 2
+                && argumentList.at(0).find("-") == 0)
                     || (argumentList.size() <= 1))
             {
                 //make the new test command
@@ -216,18 +228,15 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
             }
             else
             {
-                //there was no flag so
-                //insert the last token of the argument list back to the
-                // token list
-                tokenList.insert(tokenList.begin(),argumentList.back());
-                //remove the last argument from the argument list
-                argumentList.pop_back();
-                //make the new test command
-                testvar = new TestCmd(argumentList);
+                std::string error = "Error : -rshell: [: "
+                        + argumentList.front() + " unary operator expected\n";
+                throw error;
+
             }
 
         }
     }
+
     return testvar;
 }
 
@@ -522,6 +531,7 @@ CMDLine *CMDTranslator::translate(std::vector<std::string> tokenList,
         }
         else
         {
+            std::cout << "here in error\n";
             const std::string error2 =
                     "Error : -rshell: syntax error near unexpected token "
                     + tokenList.front() + "\n";
