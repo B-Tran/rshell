@@ -37,7 +37,9 @@ There were several problems we encountered  in the command input.
 
 3. Nested parentheses may not parse correctly 
 
-4. File name sizes that are too long may not work in the TestCmd class
+4. Nested Bracket displays a different error message than the bash error message 
+
+5. File name sizes that are too long may not work in the TestCmd class
 
 
 ## Authors & Contributor List
