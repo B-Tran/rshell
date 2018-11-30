@@ -29,17 +29,21 @@ As the following diagram demonstrates:
  
 ## Known Bugs
 
-There were several problems we encountered  in the command input.
+There were several problems we encountered  in the command input
 
-1. The program might not be able to handle string literals in the command input. 
+1. The program might not be able to handle string literals in the command input 
  
-2. Cd is not part of bin file diectory so cd won't work as a command.  
+2. Cd is not part of bin file diectory so cd won't work as a command  
 
 3. Nested parentheses may not parse correctly 
 
 4. Nested Bracket displays a different error message than the bash error message 
 
 5. File name sizes that are too long may not work in the TestCmd class
+
+6. It doesn't work on file names that have spaces in the file name
+
+7. Error with brackets when used in some situations  
 
 
 ## Authors & Contributor List
