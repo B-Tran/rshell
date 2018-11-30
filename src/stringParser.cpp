@@ -66,15 +66,16 @@ std::string StringParser::get_literal(std::string &input)
     size_t pos = found_begin_literal(input);
     size_t ending;
     std::string token;
-    if ((ending = input.find(literalList.at(pos), 1)) < input.size())
+    std::cout << pos << "\n";
+    if ((ending = input.find(literalList.at(pos).second, 1)) < input.size())
     {
         //if the ending literal is found with a space at the end or is the
         //very last item
-        if ((((ending + 1) < input.size()) && (input.at(ending + 1) == ' '))
-                || ((ending + 1) == input.size()))
+        if ((((ending + literalList.at(pos).second.size()) < input.size()) && (input.at(ending + literalList.at(pos).second.size()) == ' '))
+                || ((ending + literalList.at(pos).second.size()) == input.size()))
         {
-            token = input.substr(0, (ending + literalList.at(pos).size()));
-            input.erase(0, (ending + literalList.at(pos).size()));
+            token = input.substr(0, (ending + literalList.at(pos).second.size()));
+            input.erase(0, (ending + literalList.at(pos).second.size()));
         }
         else
         {
@@ -83,9 +84,10 @@ std::string StringParser::get_literal(std::string &input)
     }
     else
     {
-        std::string error = "Error: missing ending literal: "
-                + literalList.at(pos) + "\n";
-        throw error;
+        token = get_token(input);
+//        std::string error = "Error: missing ending literal: "
+//                + literalList.at(pos).second + "\n";
+//        throw error;
     }
     return token;
 }
@@ -131,7 +133,7 @@ size_t StringParser::found_begin_literal(const std::string &input)
     //finds which litteral exists at the beginning of the list
     for (size_t i = 0; i < literalList.size(); ++i)
     {
-        if (input.find(literalList.at(i)) == 0)
+        if (input.find(literalList.at(i).first) == 0)
         {
             pos = i;
         }
@@ -145,7 +147,7 @@ StringParser::StringParser()
 
 StringParser::StringParser(std::vector<std::string> dList,
                            std::vector<std::string> dIList,
-                           std::vector<std::string> literals)
+                           std::vector<std::pair<std::string,std::string>> literals)
 {
     delimList = dList;
     delimIgnList = dIList;
@@ -166,7 +168,7 @@ void StringParser::add_delim_ign_item(std::string delimIgnItem)
     delimIgnList.push_back(delimIgnItem);
 }
 
-void StringParser::add_literal_item(std::string literal)
+void StringParser::add_literal_item(std::pair<std::string, std::string> literal)
 {
     literalList.push_back(literal);
 }
