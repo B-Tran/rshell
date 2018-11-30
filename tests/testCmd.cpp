@@ -96,6 +96,7 @@ TEST(TESTCMDCLASS, DefaultFlagTest)
 
     EXPECT_EQ(testCommand.execute(),1) ;
 }
+
 ///Expected Errors////
 TEST(TESTCMDCLASS, InvalidFlagTest1)
 {
@@ -144,8 +145,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 }
  TEST(TESTCMDCLASS, InvaildFlagTest5)
  {
-//     This TEST case has a issue if the user entered invalid input in
-//     the beginning vector
+
      std::vector<std::string> theTest;
      theTest.push_back("d;nnvm;lamfl;smd;lasmd;lk");
 
@@ -156,11 +156,390 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
  TEST(TESTCMDCLASS, EmptyTest)
  {
-//     This TEST case has a issue if the user entered invalid input in
-//     the beginning vector
+
      std::vector<std::string> theTest;
 
      TestCmd testCommand(theTest);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(),0) ;
+ }
+ TEST(TESTCMDCLASS,AndConnectorFlagTest1)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-e");
+     theTest.push_back("src/");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+     
+     EXPECT_EQ(A->execute(), 1);
+
+ }
+ 
+ TEST(TESTCMDCLASS, AndConnectorFlagTest2)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-e");
+     theTest.push_back("CMakeLists.txt");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 1);
+ 
+ }
+ 
+ TEST(TESTCMDCLASS, AndConnectorFlagTest3)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+     std::vector<std::string> argument2;
+
+
+     theTest.push_back("-f");
+     theTest.push_back("CMakeLists.txt");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, AndConnectorFlagTest4)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-d");
+     theTest.push_back("src/");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, OrConnectorFlagTest1)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-e");
+     theTest.push_back("src/");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, OrConnectorFlagTest2)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-e");
+     theTest.push_back("/home");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, OrConnectorFlagTest3)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-f");
+     theTest.push_back("CMakeLists.txt");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, OrConnectorFlagTest4)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-d");
+     theTest.push_back("src/");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, InvalidConnectorFlagTest1)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-e");
+     theTest.push_back("lkdnlkanf");
+
+     argument1.push_back("echo");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 0);
+ 
+ }
+ TEST(TESTCMDCLASS, InvalidConnectorFlagTest2)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-e");
+     theTest.push_back("lkdnlkanf");
+
+     argument1.push_back("hghddh");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 0);
+ 
+ }
+ TEST(TESTCMDCLASS, InvalidConnectorFlagTest3)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("-f");
+     theTest.push_back("lkdnlkanf");
+
+     argument1.push_back("hghddh");
+     argument1.push_back("path exists");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 0);
+ 
+ }
+ TEST(TESTCMDCLASS, DefaultConnectorFlagTest1)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("../");
+
+     argument1.push_back("echo");
+     argument1.push_back("../");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 1);
+ 
+ }
+TEST(TESTCMDCLASS, DefaultConnectorFlagTest2)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+     argument1.push_back("echo");
+     argument1.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, DefaultConnectorFlagTest3)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     theTest.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+     argument1.push_back("echo");
+     argument1.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    Or *B = new Or(command, command1);
+
+        EXPECT_EQ(B->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, TheConnectorFlagTest)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+     theTest.push_back("-d");
+     theTest.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+     argument1.push_back("echo");
+     argument1.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 1);
+ 
+ }
+ TEST(TESTCMDCLASS, EmptyConnectorFlagTest)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+
+
+     argument1.push_back("echo");
+     argument1.push_back("hello");
+
+
+    CMDLine *command = new TestCmd(theTest);
+    CMD *command1 = new CMD(argument1);
+   
+  
+    And *A = new And(command, command1);
+
+        EXPECT_EQ(A->execute(), 0);
+ 
+ }
+
+ TEST(TESTCMDCLASSTHROW, invalid_flag)
+ {
+     std::vector<std::string> theTest;
+
+     theTest.push_back("-z");
+     theTest.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
+
+
+    CMDLine *command = new TestCmd(theTest);
+
+    EXPECT_THROW(command->execute(), std::string  );
+
+
  }
