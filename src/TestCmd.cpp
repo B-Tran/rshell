@@ -124,6 +124,11 @@ bool TestCmd::execute()
             std::cout << "(True)\n";
             toExecuted = true;
         }
+        else
+        {
+            std::cout << "(False)\n";
+            return false;
+        }
 
     }
     else if( ( flagExist == false ) && ( S_ISDIR(statBuffer.st_mode) ||
