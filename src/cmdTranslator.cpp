@@ -164,6 +164,10 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
                  tokenList.at(1) == " ]" ) || (tokenList.at(0) == "[ " &&
                                                tokenList.at(1) == "]")))
         {
+            if(tokenList.at(0) == "[ ")
+            {
+                tokenList.at(0).erase(1,1);
+            }
             argumentList.push_back(tokenList.front());
             tokenList.erase(tokenList.begin());
             tokenList.erase(tokenList.begin());

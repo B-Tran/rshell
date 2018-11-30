@@ -44,7 +44,7 @@ bool TestCmd::execute()
 
     if(arugmentListVector.size() == 2)
     {
-        if(std::find(flags.begin(),flags.end(),arugmentListVector.at(1)) !=
+        if(std::find(flags.begin(),flags.end(),arugmentListVector.at(0)) !=
                 flags.end())
         {
             flagExist = true;
