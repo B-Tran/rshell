@@ -4,8 +4,8 @@
 
 Or::Or()
 {
-    left = NULL;
-    right = NULL;
+    left = nullptr;
+    right = nullptr;
 }
 Or::Or(CMDLine *left, CMDLine *right) : Connector(left, right)
 {

@@ -17,40 +17,48 @@ int main()
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
+    dList.push_back("(");
+    dList.push_back(")");
+    dList.push_back("[ ");
+    dList.push_back(" ]");
     dIList.push_back(" ");
     limiters.push_back(std::make_pair(std::string("\""), std::string("\"")));
     limiters.push_back(std::make_pair(std::string("\'"), std::string("\'")));
     StringParser parsing(dList,dIList,limiters);
     std::string input;
     std::vector<std::string> tokens;
+     CMDLine * toExecute = nullptr;
+     std::vector<CMDLine *> allocatedCommands;
 
     std::cout << "$ ";
     getline(std::cin,input);
+    try
+    {
     tokens = parsing.parse_string(input);
     std::cout << "token list\n";
     for(size_t i = 0 ; i < tokens.size(); ++i)
     {
 	    std::cout << tokens.at(i) << "\n";
+        std::cout << "size: " << tokens.at(i).size() << "\n";
     }
     std::cout << "\n";
     
-    std::cout << "executeing\n";
-    std::vector<CMDLine *> allocatedCommands;
-    CMDLine * toExecute = nullptr;
+
     CMDTranslator translator;
-    try 
-    {
         toExecute = translator.translate(tokens,allocatedCommands);
+        std::cout << "executeing\n";
+        if(toExecute)
+            toExecute->execute();
+        else
+            std::cout << "to execute failed\n";
     } 
     catch (const std::string e) 
     {
         std::cout << e;
     }
-    if(toExecute)
-        toExecute->execute();
-    else
-        std::cout << "to execute failed\n";
 
+
+    std::cout << "here! \n";
     std::cout << "\n";
     while (!allocatedCommands.empty()) 
     {
@@ -58,5 +66,6 @@ int main()
         allocatedCommands.back() = nullptr;
         allocatedCommands.pop_back();
     }
+    std::cout << "end!\n";
 }
 

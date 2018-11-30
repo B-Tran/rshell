@@ -34,8 +34,8 @@ ADD_EXECUTABLE(translateMain
         "src/Semicolon.cpp"
         "src/Exit.cpp"
         "src/CMDLine.cpp"
+        "src/TestCmd.cpp"
 )
-
 ADD_EXECUTABLE(test
 	"tests/test.cpp"
 #	"tests/stringParseTest.cpp"
@@ -49,7 +49,8 @@ ADD_EXECUTABLE(test
 	 "src/And.cpp"
 	 "src/Semicolon.cpp"
 	 "src/Exit.cpp"
-         "src/CMDLine.cpp"
+     "src/CMDLine.cpp"
+     "src/TestCmd.cpp"
 )
 
 #ADD_EXECUTABLE(CMDTest

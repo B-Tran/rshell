@@ -17,6 +17,10 @@ int main()
     dList.push_back("||");
     dList.push_back("&&");
     dList.push_back(";");
+    dList.push_back("(");
+    dList.push_back(")");
+    dList.push_back("[ ");
+    dList.push_back(" ]");
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
@@ -29,7 +33,7 @@ int main()
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value
     //defined in limits.h
     bool run = true;
-
+      
     // try to getlogin() //returns a pointer to the username when successful,
     //and NULL on failure
     if (getlogin() == NULL)
@@ -49,19 +53,18 @@ int main()
     {
         while (1)
         {
-
             try
             {
                 std::cout << theLogin << "@" << theHost << "$ ";
                 getline(std::cin, input);
                 tokens = parsing.parse_string(input);
-
+           
                 CMDLine *toExecute = NULL;
                 CMDTranslator translator;
                 toExecute = translator.translate(tokens, allocatedCommands);
 
                 if (toExecute)
-                {
+                { 
                     toExecute->execute();
                 }
                 else

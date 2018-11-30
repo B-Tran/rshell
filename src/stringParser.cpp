@@ -101,7 +101,8 @@ size_t StringParser::found_begin_delim(const std::string &input)
 //        std::cout << "checking for finding: " <<
 //        (input.find(delimList.at(i))) << "\n";
         if(input.find(delimList.at(i)) == 0 && ((pos < delimList.size() &&
-        delimList.at(pos).size() < delimList.at(i).size()) || pos == delimList.size()))
+        delimList.at(pos).size() < delimList.at(i).size()) ||
+                                                pos == delimList.size()))
         {
 //            std::cout << "found delim: " << i << "\n";
             //if a delimiter was found before but it is smaller in size
@@ -182,6 +183,7 @@ std::vector<std::string> StringParser::parse_string(std::string input)
     while (!input.empty())
     {
         //if there is a literal at the beginning
+//        std::cout <<"here at beginning of parsing loop!\n";
         if (found_begin_literal(input) < literalList.size())
         {
             token = get_literal(input);
