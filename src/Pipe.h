@@ -6,9 +6,8 @@
 
 class Pipe: public Connector
 {
-    public:
+  public:
   Pipe();
-  Pipe(CMDLine *left,CMDLine *right);
   ~Pipe();
   bool execute();
   private:
