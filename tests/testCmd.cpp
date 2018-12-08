@@ -427,10 +427,12 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
      std::vector<std::string> argument1;
 
 
-     theTest.push_back("../");
+   
+
+    theTest.push_back("src/" );
 
      argument1.push_back("echo");
-     argument1.push_back("../");
+     argument1.push_back("src/");
 
 
     CMDLine *command = new TestCmd(theTest);
@@ -442,29 +444,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
         EXPECT_EQ(A->execute(), 1);
  
  }
-TEST(TESTCMDCLASS, DefaultConnectorFlagTest2)
- {
-
-     std::vector<std::string> theTest;
-     std::vector<std::string> argument1;
-
-
-     theTest.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
-
-     argument1.push_back("echo");
-     argument1.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
-
-
-    CMDLine *command = new TestCmd(theTest);
-    CMD *command1 = new CMD(argument1);
-   
-  
-    And *A = new And(command, command1);
-
-        EXPECT_EQ(A->execute(), 1);
- 
- }
- TEST(TESTCMDCLASS, DefaultConnectorFlagTest3)
+ TEST(TESTCMDCLASS, DefaultConnectorFlagTest2)
  {
 
      std::vector<std::string> theTest;
@@ -484,28 +464,6 @@ TEST(TESTCMDCLASS, DefaultConnectorFlagTest2)
     Or *B = new Or(command, command1);
 
         EXPECT_EQ(B->execute(), 1);
- 
- }
- TEST(TESTCMDCLASS, TheConnectorFlagTest)
- {
-
-     std::vector<std::string> theTest;
-     std::vector<std::string> argument1;
-
-     theTest.push_back("-d");
-     theTest.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
-
-     argument1.push_back("echo");
-     argument1.push_back("/home/christian/OneDrive/CS100/assignment-1-failing-unit-testers");
-
-
-    CMDLine *command = new TestCmd(theTest);
-    CMD *command1 = new CMD(argument1);
-   
-  
-    And *A = new And(command, command1);
-
-        EXPECT_EQ(A->execute(), 1);
  
  }
  TEST(TESTCMDCLASS, EmptyConnectorFlagTest)
