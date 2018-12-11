@@ -55,35 +55,35 @@ ADD_EXECUTABLE(test
      "src/TestCmd.cpp"
 )
 
-ADD_EXECUTABLE(CMDTest
-	"src/main.cpp"
-	"src/stringParser.cpp"
-	"src/CMD.cpp"
-	 "src/cmdTranslator.cpp"
-	 "src/stringParser.cpp"
-         "src/CMD.cpp"
-	 "src/Connector.cpp"
-	 "src/Or.cpp"
-	 "src/And.cpp"
-	 "src/Semicolon.cpp"
-	 "src/Exit.cpp"
-         "src/CMDLine.cpp"
-         "src/TestCmd.cpp"
-	)
+#ADD_EXECUTABLE(CMDTest
+#	"src/main.cpp"
+#	"src/stringParser.cpp"
+#	"src/CMD.cpp"
+#	 "src/cmdTranslator.cpp"
+#	 "src/stringParser.cpp"
+#         "src/CMD.cpp"
+#	 "src/Connector.cpp"
+#	 "src/Or.cpp"
+#	 "src/And.cpp"
+#	 "src/Semicolon.cpp"
+#	 "src/Exit.cpp"
+#         "src/CMDLine.cpp"
+#         "src/TestCmd.cpp"
+#	)
 
-ADD_EXECUTABLE(testcmdMain
-"src/TestCmd.cpp"
-"src/testCmdMain.cpp"
-	"src/cmdTranslator.cpp"
-	"src/stringParser.cpp"
-         "src/CMD.cpp"
-        "src/Connector.cpp"
-	"src/Or.cpp"
-        "src/And.cpp"
-	"src/Semicolon.cpp"
-	"src/Exit.cpp"
-        "src/CMDLine.cpp"
-)
+#ADD_EXECUTABLE(testcmdMain
+#"src/TestCmd.cpp"
+#"src/testCmdMain.cpp"
+#	"src/cmdTranslator.cpp"
+#	"src/stringParser.cpp"
+#         "src/CMD.cpp"
+#        "src/Connector.cpp"
+#	"src/Or.cpp"
+#        "src/And.cpp"
+#	"src/Semicolon.cpp"
+#	"src/Exit.cpp"
+#        "src/CMDLine.cpp"
+#)
 #ADD_EXECUTABLE(CommandsTest
 #	"tests/CMDTest.cpp"
 #	"src/stringParser.cpp"

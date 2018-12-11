@@ -58,6 +58,10 @@ CMD *CMDTranslator::make_CMD(std::vector<std::string> &tokenList)
            && !(tokenList.front().find("#") == 0) &&
            !is_begin_para(tokenList.front()) && !is_end_para(tokenList.front()))
     {
+        if(tokenList.front() == "[ " || tokenList.front() == " ]")
+        {
+            tokenList.front().erase(tokenList.front().find(" "),1);
+        }
         remove_literals(tokenList.front());
         arguments.push_back(tokenList.front());
         tokenList.erase(tokenList.begin());
