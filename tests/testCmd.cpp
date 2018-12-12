@@ -259,6 +259,40 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
         EXPECT_EQ(A->execute(), 1);
  
  }
+
+ TEST(TESTCMDCLASS, AndConnectorFlagTest5)
+ {
+
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+     theTest.push_back("../");
+     argument1.push_back("echo");
+     argument1.push_back("../");
+     CMDLine *command = new TestCmd(theTest);
+     CMD *command1 = new CMD(argument1);
+
+
+     And *A = new And(command, command1);
+     EXPECT_EQ(A->execute(), 1);
+
+ }
+
+ TEST(TESTCMDCLASS, AndConnectorFlagTest6)
+ {
+     std::vector<std::string> theTest;
+     std::vector<std::string> argument1;
+     theTest.push_back("/");
+     argument1.push_back("echo");
+     argument1.push_back("/");
+     CMDLine *command = new TestCmd(theTest);
+     CMD *command1 = new CMD(argument1);
+
+
+     And *A = new And(command, command1);
+     EXPECT_EQ(A->execute(), 1);
+
+ }
+
  TEST(TESTCMDCLASS, OrConnectorFlagTest1)
  {
 

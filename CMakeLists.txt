@@ -98,8 +98,8 @@ ADD_EXECUTABLE(test
 #)
 
 #ADD_EXECUTABLE(ParserTest
-#		"src/parserMain.cpp"
-#		"src/stringParser.cpp"
+#                "src/parserMain.cpp"
+#                "src/stringParser.cpp"
 #)
 
 #TARGET_LINK_LIBRARIES(stringParseTest gmock)

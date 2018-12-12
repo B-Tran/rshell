@@ -15,6 +15,11 @@ int main()
     dList.push_back("(");
     dList.push_back(")");
     dList.push_back(" ");
+    dList.push_back(">>");
+    dList.push_back(">");
+    dList.push_back("<");
+    dList.push_back("|");
+    dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
     StringParser parsing(dList,dIList,limiters);
