@@ -10,6 +10,9 @@ public:
   And(CMDLine *left, CMDLine *right);
   ~And();
   bool execute(int inputFile, int outputFile);
+  char* getFilename();
+ // int getFilenameNumber();
+
 };
 
 #endif

@@ -10,6 +10,7 @@ class Or : public Connector
     Or(CMDLine *left, CMDLine *right);
     ~Or();
     bool execute(int inputFile, int outputFile);
+    char* getFilename();
 };
 
 #endif

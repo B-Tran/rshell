@@ -8,7 +8,6 @@ CMD::CMD()
     argumentList = nullptr;
     argumentCount = 0;
 }
-
 CMD::CMD(CMDLine *commandArg)
 {
     this->commandArg = commandArg;
@@ -56,6 +55,15 @@ void CMD::addArguments(std::vector<std::string> theArugments)
     argumentList[theArugments.size()] = nullptr;
 
 }
+char* CMD::getFilename()
+{
+ return argumentList[0];
+}
+// int CMD::getFilenameNumber()
+// {
+//   return 0;
+// }
+
 bool CMD::execute(int inputFile, int outputFile)
 {  
 
@@ -76,12 +84,14 @@ bool CMD::execute(int inputFile, int outputFile)
         if(dup2(inputFile,0) == -1)  
         {
            perror("dup2");
-            return false;
+          _exit(69);
+
         }
         if(dup2(outputFile,1) == -1)
         {
             perror("dup2");
-            return false;
+           _exit(69);
+
         }
 
         if (execvp(argumentList[0], argumentList) == -1)

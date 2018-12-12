@@ -12,10 +12,14 @@ OutputRedirection::~OutputRedirection()
 {
 
 }
-bool OutputRedirectionexecute(int inputFile, int outputFile)
+char* OutputRedirection::getFilename()
 {
-
-    //    outputFile = open(,O_WRONLY| O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
-    //    return;
+ return nullptr;
+}
+bool OutputRedirection::execute(int inputFile, int outputFile)
+{
+      
+       outputFile = open(right->getFilename(),O_WRONLY| O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
+       return left->execute(inputFile,outputFile);
 
 }

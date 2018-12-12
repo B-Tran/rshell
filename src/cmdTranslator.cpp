@@ -4,6 +4,9 @@
 #include "Or.h"
 #include "Semicolon.h"
 #include "Pipe.h"
+#include "InputRedirection.h"
+#include "OutputRedirection.h"
+#include "DoubleOutputRed.h"
 #include <cstdlib>
 #include <algorithm>
 
@@ -13,11 +16,17 @@ CMDTranslator::CMDTranslator()
     connectors.push_back("||");
     connectors.push_back(";");
     connectors.push_back("|");
+    connectors.push_back("<");
+    connectors.push_back(">");
+    connectors.push_back(">>");
+
     precedenceMap["&&"] = 3;
     precedenceMap["||"] = 3;
     precedenceMap[";"] = 3;
-    precedenceMap["|"] = 3;
-
+    precedenceMap["|"] = 4;
+    precedenceMap["<"] = 3;
+    precedenceMap[">"] = 3;
+    precedenceMap[">>"] = 3;
 }
 
 CMDTranslator::~CMDTranslator()
@@ -483,14 +492,29 @@ Connector *CMDTranslator::make_connector(const std::string & token)
     {
         newConnector = new Or();
     }
+    else if(token == connectors.at(2))
+    {
+        newConnector = new Semicolon();
+    }
     else if (token == connectors.at(3))
     {
         std::cout << "making pipe!\n";
         newConnector = new Pipe();
     }
-    else
+    else if (token == connectors.at(4))
     {
-        newConnector = new Semicolon();
+        std::cout << "making InputRed!\n";
+        newConnector = new InputRedirection();
+    }
+    else if (token == connectors.at(5))
+    {
+        std::cout << "making OutputRed!\n";
+        newConnector = new OutputRedirection();
+    }
+     else if (token == connectors.at(6))
+    {
+        std::cout << "making DoubleOutputRed!\n";
+        newConnector = new DoubleOutputRed();
     }
 
 

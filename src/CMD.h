@@ -22,11 +22,12 @@ class CMD : public CMDLine
     ~CMD();
     void addArguments(std::vector<std::string> theArugments);
     bool execute(int inputFile, int outputFile);
-
+    char* getFilename();
   private:
     CMDLine *commandArg;
     char **argumentList;
     int argumentCount;
+
 };
 
 #endif

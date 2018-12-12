@@ -6,7 +6,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-
 class OutputRedirection : public Connector
 {
   public:
@@ -14,7 +13,7 @@ class OutputRedirection : public Connector
   OutputRedirection(CMDLine* left, CMDLine* right);
   ~OutputRedirection();
   bool execute(int inputFile, int outputFile);
-   
+  char* getFilename();
 };
 
 

@@ -11,6 +11,10 @@ Semicolon::Semicolon(CMDLine *left, CMDLine *right) : Connector(left, right)
 Semicolon::~Semicolon()
 {
 }
+char* Semicolon::getFilename()
+{
+ return nullptr;
+}
 bool Semicolon::execute(int inputFile, int outputFile)
 {
     left->execute(inputFile,outputFile); 

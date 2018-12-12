@@ -83,6 +83,7 @@ class CMDTranslator
 	//returns a nullptr if
 	CMDLine *translate(std::vector<std::string> tokenList,
 					   std::vector<CMDLine *> &returnList);
+
 };
 
 #endif

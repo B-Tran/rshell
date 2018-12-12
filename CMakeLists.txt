@@ -18,6 +18,10 @@ ADD_EXECUTABLE(rshell
      "src/CMDLine.cpp"
      "src/TestCmd.cpp"
      "src/Pipe.cpp"
+     "src/InputRedirection.cpp"
+     "src/OutputRedirection.cpp"
+     "src/DoubleOutputRed.cpp"
+ 
 	)
 
 #ADD_EXECUTABLE(stringParseTest
@@ -29,15 +33,18 @@ ADD_EXECUTABLE(translateMain
 	"src/translateMain.cpp"
 	"src/cmdTranslator.cpp"
 	"src/stringParser.cpp"
-         "src/CMD.cpp"
-        "src/Connector.cpp"
+    "src/CMD.cpp"
+    "src/Connector.cpp"
 	"src/Or.cpp"
-        "src/And.cpp"
+    "src/And.cpp"
 	"src/Semicolon.cpp"
 	"src/Exit.cpp"
     "src/CMDLine.cpp"
     "src/TestCmd.cpp"
     "src/Pipe.cpp"
+    "src/InputRedirection.cpp"
+    "src/OutputRedirection.cpp"
+    "src/DoubleOutputRed.cpp"
 
 )
 #ADD_EXECUTABLE(test

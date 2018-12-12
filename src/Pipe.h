@@ -15,9 +15,7 @@ class Pipe: public Connector
   Pipe(CMDLine *left, CMDLine *right);
   ~Pipe();
   bool execute(int inputFile, int outputFile);
-  private:
-    
- 
+  char* getFilename();
 };
 
 

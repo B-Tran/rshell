@@ -12,6 +12,10 @@ Pipe::~Pipe()
 {
 
 }
+char* Pipe::getFilename()
+{
+ return nullptr;
+}
 bool Pipe::execute(int inputFile, int outputFile)
 {
      //NOTES: pfd[0] is set up for reading, fd[1] is set up for writing
@@ -22,19 +26,8 @@ bool Pipe::execute(int inputFile, int outputFile)
  
 
     
-    // Integer 0 : Stdin // file descriptor // Ex. cin >> name;
-    // The system writes the string to file descriptor std in
-    // Integer 1 : Stdout // file descriptor // Ex. cout << "hello";
-    // The system places the hello to the stdout then its place to the buffer then display to the screen
-    // Integer 2 : stderr
-
-
-
 //Redirection is a feature in Linux such that when executing a command, you can change the standard input/output devices.
 // The basic workflow of any Linux command is that it takes an input and give an output.
-
-//The standard input (stdin) device is the keyboard.
-//The standard output (stdout) device is the screen.
 
 
     //pipe() creates a pair of file descriptors, pointing to a pipe inode, 

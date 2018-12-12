@@ -10,6 +10,7 @@ public:
 	Exit();
 	~Exit();
 	bool execute(int inputFile, int outputFile);
+	char* getFilename();
 };
 
 #endif

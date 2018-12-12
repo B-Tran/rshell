@@ -12,11 +12,13 @@ InputRedirection::~InputRedirection()
 {
 
 }
-bool InputRedirectionexecute(int inputFile, int outputFile)
+char* InputRedirection::getFilename()
 {
-    // std::string temp = ;
-
-    // inputFile = open( ,O_RDONLY);
-    
+ return nullptr;
+}
+bool InputRedirection::execute(int inputFile, int outputFile)
+{
+    inputFile = open( right->getFilename() ,O_RDONLY);
+     return left->execute(inputFile,outputFile);
 
 }

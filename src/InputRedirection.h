@@ -17,7 +17,8 @@ class InputRedirection : public Connector
   InputRedirection(CMDLine* left, CMDLine* right);
   ~InputRedirection();
   bool execute(int inputFile, int outputFile);
-   
+  char* getFilename();
+
 };
 
 

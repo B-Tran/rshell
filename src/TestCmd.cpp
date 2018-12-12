@@ -11,6 +11,11 @@ TestCmd::TestCmd(std::vector<std::string> arugmentListVector)
 TestCmd::~TestCmd()
 {
 }
+char* TestCmd::getFilename()
+{
+    return nullptr;
+}
+
 bool TestCmd::execute(int inputFile, int outputFile)
 {
 

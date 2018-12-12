@@ -14,7 +14,8 @@ class DoubleOutputRed : public Connector
    DoubleOutputRed(CMDLine* left, CMDLine* right);
   ~DoubleOutputRed();
   bool execute(int inputFile, int outputFile);
-   
+  char* getFilename();
+
 };
 
 

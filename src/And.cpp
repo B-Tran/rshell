@@ -13,6 +13,11 @@ And::And(CMDLine *left, CMDLine *right) : Connector(left, right)
 And::~And()
 {
 }
+char* And::getFilename()
+{
+ return nullptr;
+}
+
 bool And::execute(int inputFile, int outputFile)
 {
     if (!right) // if there no right base pointer
