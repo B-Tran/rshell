@@ -33,7 +33,10 @@ int main()
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value
     //defined in limits.h
     bool run = true;
-      
+
+    int theInput = int(); // set theInput = 0;
+    int theOutput = int();
+     
     // try to getlogin() //returns a pointer to the username when successful,
     //and NULL on failure
     if (getlogin() == NULL)
@@ -65,7 +68,7 @@ int main()
 
                 if (toExecute)
                 { 
-                    toExecute->execute();
+                    toExecute->execute(theInput,theOutput);
                 }
                 else
                 {

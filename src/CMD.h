@@ -21,7 +21,7 @@ class CMD : public CMDLine
     CMD(std::vector<std::string> theArugments);
     ~CMD();
     void addArguments(std::vector<std::string> theArugments);
-    bool execute();
+    bool execute(int inputFile, int outputFile);
 
   private:
     CMDLine *commandArg;

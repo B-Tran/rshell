@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <fstream>
 
 class Pipe: public Connector
 {
@@ -12,7 +13,7 @@ class Pipe: public Connector
   Pipe();
   Pipe(CMDLine *left, CMDLine *right);
   ~Pipe();
-  bool execute();
+  bool execute(int inputFile, int outputFile);
   private:
     
  

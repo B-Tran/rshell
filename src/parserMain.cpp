@@ -20,7 +20,9 @@ int main()
     StringParser parsing(dList,dIList,limiters);
     std::string input;
     std::vector<std::string> tokens;
-
+    int theInput = int();
+    int theOutput = int();
+    
     std::cout << "$ ";
     getline(std::cin,input);
     tokens = parsing.parse_string(input);

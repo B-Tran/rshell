@@ -26,6 +26,9 @@ int main()
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value defined in limits.h
     bool run = true;
 
+    int theInput = int();
+    int theOutput = int();
+
     // try to getlogin() //returns a pointer to the username when successful, and NULL on failure
     if (getlogin() == NULL)
     {
@@ -53,7 +56,7 @@ int main()
         std::getline(std::cin, input);
         tokens = parsing.parse_string(input);
         theTest->addArguments(tokens);
-        run = theTest->execute();
+        run = theTest->execute(theInput,theOutput);
 
     } // end of while loop
 

@@ -13,7 +13,7 @@ Or::Or(CMDLine *left, CMDLine *right) : Connector(left, right)
 Or::~Or()
 {
 }
-bool Or::execute()
+bool Or::execute(int inputFile, int outputFile)
 {
     if (!right) // if there is no right base pointer 
     {
@@ -21,5 +21,5 @@ bool Or::execute()
                                   "unexpected token || \n";
         throw error;
     }
-    return (left->execute() || right->execute());
+    return (left->execute(inputFile,outputFile) || right->execute(inputFile,outputFile));
 }

@@ -13,7 +13,7 @@ And::And(CMDLine *left, CMDLine *right) : Connector(left, right)
 And::~And()
 {
 }
-bool And::execute()
+bool And::execute(int inputFile, int outputFile)
 {
     if (!right) // if there no right base pointer
     {
@@ -21,5 +21,5 @@ bool And::execute()
                                   "near unexpected token && \n";
         throw error;
     }
-    return (left->execute() && right->execute());
+    return (left->execute(inputFile,outputFile) && right->execute(inputFile,outputFile));
 }

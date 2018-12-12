@@ -9,7 +9,7 @@ public:
   And();
   And(CMDLine *left, CMDLine *right);
   ~And();
-  bool execute();
+  bool execute(int inputFile, int outputFile);
 };
 
 #endif

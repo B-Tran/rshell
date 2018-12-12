@@ -11,7 +11,7 @@ TestCmd::TestCmd(std::vector<std::string> arugmentListVector)
 TestCmd::~TestCmd()
 {
 }
-bool TestCmd::execute()
+bool TestCmd::execute(int inputFile, int outputFile)
 {
 
     // int stat(const char *path, struct stat *buf);

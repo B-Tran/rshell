@@ -56,21 +56,39 @@ void CMD::addArguments(std::vector<std::string> theArugments)
     argumentList[theArugments.size()] = nullptr;
 
 }
-bool CMD::execute()
+bool CMD::execute(int inputFile, int outputFile)
 {  
 
     bool theExecuted = true;
+
+
+
     // Create a child process of datatype of process id
     pid_t pid = fork();
+
+         
     int status = 0;
     if (pid == 0)
     {
+
+        if(dup2(inputFile,0) == -1)  
+        {
+           perror("dup2");
+            return false;
+        }
+        if(dup2(outputFile,1) == -1)
+        {
+            perror("dup2");
+            return false;
+        }
+
         if (execvp(argumentList[0], argumentList) == -1)
         {
             perror("Command not found");
-            //kill the function if the child fails
+             //kill the function if the child fails
             _exit(69);
         }
+
     }
     else if (pid == -1) // if fork fails
     {

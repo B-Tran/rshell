@@ -34,8 +34,9 @@ int main()
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value 
      //defined in limits.h
     
+     int theInput = int();
+     int theOutput = int();
      
-     ;
 
 
     // try to getlogin() //returns a pointer to the username when successful,
@@ -67,7 +68,7 @@ int main()
                 {   
                     tokens.erase(tokens.begin()); // delete the test or bracket in beginning pos
                    TestCmd theTest(tokens);
-                 theTest.execute();
+                 theTest.execute(theInput, theOutput);
 
                 }
                 
@@ -76,7 +77,7 @@ int main()
                 toExecute = translator.translate(tokens, allocatedCommands);
                 if (toExecute)
                 {
-                    toExecute->execute();
+                    toExecute->execute(theInput,theOutput);
                 }
                 else
                 {
