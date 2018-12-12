@@ -62,11 +62,13 @@ bool CMD::execute(int inputFile, int outputFile)
     bool theExecuted = true;
 
 
+  std::cout << " CMD in : " << inputFile << std::endl;
+    std::cout << "CMD out : " << outputFile << std::endl;
 
     // Create a child process of datatype of process id
     pid_t pid = fork();
 
-         
+//   std::cout << "here"  << std::endl;
     int status = 0;
     if (pid == 0)
     {

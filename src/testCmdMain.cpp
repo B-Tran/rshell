@@ -34,9 +34,10 @@ int main()
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value 
      //defined in limits.h
     
-     int theInput = int();
-     int theOutput = int();
-     
+    
+    const int theInput = 0 ;
+    const int theOutput = 1;
+
 
 
     // try to getlogin() //returns a pointer to the username when successful,

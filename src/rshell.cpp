@@ -21,9 +21,11 @@ int main()
     dList.push_back(")");
     dList.push_back("[ ");
     dList.push_back(" ]");
+    dList.push_back("|");
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
+
     StringParser parsing(dList, dIList, limiters);
     std::string input;
     std::vector<std::string> tokens;
@@ -34,8 +36,8 @@ int main()
     //defined in limits.h
     bool run = true;
 
-    int theInput = int(); // set theInput = 0;
-    int theOutput = int();
+     const int theInput = 0 ;
+    const int theOutput = 1;
      
     // try to getlogin() //returns a pointer to the username when successful,
     //and NULL on failure

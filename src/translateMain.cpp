@@ -30,6 +30,9 @@ int main()
      CMDLine * toExecute = nullptr;
      std::vector<CMDLine *> allocatedCommands;
 
+   const int theInput = 0;
+    const int theOutput = 1;
+    
     std::cout << "$ ";
     getline(std::cin,input);
     try
@@ -48,7 +51,7 @@ int main()
         toExecute = translator.translate(tokens,allocatedCommands);
         std::cout << "executeing\n";
         if(toExecute)
-            toExecute->execute();
+            toExecute->execute(theInput,theOutput);
         else
             std::cout << "to execute failed\n";
     } 

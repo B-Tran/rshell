@@ -2,7 +2,7 @@
 
  Pipe::Pipe()
  {
- 
+     std::cout << "pipe constructor\n";
  }
 Pipe::Pipe(CMDLine *left, CMDLine *right) : Connector(left,right)
 {
@@ -43,9 +43,10 @@ bool Pipe::execute(int inputFile, int outputFile)
 
 
    int pfd[2];  
-   pid_t   childpid;  
+   pid_t childpid;  
 
-
+   std::cout << " in : " << inputFile << std::endl;
+    std::cout << " out : " << outputFile << std::endl;
 
     if(pipe(pfd) == -1) 
     {
