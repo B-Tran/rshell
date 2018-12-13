@@ -15,11 +15,11 @@ Or::~Or()
 }
 char* Or::getFilename()
 {
- return nullptr;
+    return nullptr;
 }
 bool Or::execute(int inputFile, int outputFile)
 {
-    if (!right) // if there is no right base pointer 
+    if (!right) // if there is no right base pointer
     {
         const std::string error = "Error : -bash: syntax error near "
                                   "unexpected token || \n";

@@ -8,7 +8,7 @@ Exit::~Exit()
 }
 char* Exit::getFilename()
 {
- return nullptr;
+    return nullptr;
 }
 bool Exit::execute(int inputFile, int outputFile)
 {

@@ -15,7 +15,7 @@ And::~And()
 }
 char* And::getFilename()
 {
- return nullptr;
+    return nullptr;
 }
 
 bool And::execute(int inputFile, int outputFile)

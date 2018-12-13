@@ -13,11 +13,11 @@ Semicolon::~Semicolon()
 }
 char* Semicolon::getFilename()
 {
- return nullptr;
+    return nullptr;
 }
 bool Semicolon::execute(int inputFile, int outputFile)
 {
-    left->execute(inputFile,outputFile); 
+    left->execute(inputFile,outputFile);
     if (right)  // if the right base pointer exist
     {
         return right->execute(inputFile,outputFile);

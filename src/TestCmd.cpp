@@ -30,7 +30,7 @@ bool TestCmd::execute(int inputFile, int outputFile)
     //On error, -1 is returned, and errno is set appropriately.
 
     struct stat statBuffer; //A pointer to a buffer where the function can
-                            // store the information
+    // store the information
     
     bool flagExist = false;
     bool toExecuted = false;
@@ -151,7 +151,7 @@ bool TestCmd::execute(int inputFile, int outputFile)
     flagTestPath = nullptr;
     return toExecuted;
 }
-   
-     // test is an object 
-     // no flag is vector size is one 
-     // flag is vector size is two
+
+// test is an object
+// no flag is vector size is one
+// flag is vector size is two

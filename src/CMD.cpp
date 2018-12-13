@@ -57,7 +57,7 @@ void CMD::addArguments(std::vector<std::string> theArugments)
 }
 char* CMD::getFilename()
 {
- return argumentList[0];
+    return argumentList[0];
 }
 // int CMD::getFilenameNumber()
 // {
@@ -70,34 +70,34 @@ bool CMD::execute(int inputFile, int outputFile)
     bool theExecuted = true;
 
 
-  std::cout << " CMD in : " << inputFile << std::endl;
-    std::cout << "CMD out : " << outputFile << std::endl;
+    //  std::cout << " CMD in : " << inputFile << std::endl;
+    //    std::cout << "CMD out : " << outputFile << std::endl;
 
     // Create a child process of datatype of process id
     pid_t pid = fork();
 
-//   std::cout << "here"  << std::endl;
+    //   std::cout << "here"  << std::endl;
     int status = 0;
     if (pid == 0)
     {
 
-        if(dup2(inputFile,0) == -1)  
+        if(dup2(inputFile,0) == -1)
         {
-           perror("dup2");
-          _exit(69);
+            perror("dup2");
+            _exit(69);
 
         }
         if(dup2(outputFile,1) == -1)
         {
             perror("dup2");
-           _exit(69);
+            _exit(69);
 
         }
 
         if (execvp(argumentList[0], argumentList) == -1)
         {
             perror("Command not found");
-             //kill the function if the child fails
+            //kill the function if the child fails
             _exit(69);
         }
 

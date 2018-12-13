@@ -39,9 +39,9 @@ int main()
     //defined in limits.h
     bool run = true;
 
-     const int theInput = 0 ;
+    const int theInput = 0 ;
     const int theOutput = 1;
-     
+
     // try to getlogin() //returns a pointer to the username when successful,
     //and NULL on failure
     if (getlogin() == NULL)
@@ -66,13 +66,13 @@ int main()
                 std::cout << theLogin << "@" << theHost << "$ ";
                 getline(std::cin, input);
                 tokens = parsing.parse_string(input);
-           
+
                 CMDLine *toExecute = NULL;
                 CMDTranslator translator;
                 toExecute = translator.translate(tokens, allocatedCommands);
 
                 if (toExecute)
-                { 
+                {
                     toExecute->execute(theInput,theOutput);
                 }
                 else

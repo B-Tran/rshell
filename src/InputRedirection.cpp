@@ -15,16 +15,16 @@ InputRedirection::~InputRedirection()
 }
 char* InputRedirection::getFilename()
 {
- return nullptr;
+    return nullptr;
 }
 bool InputRedirection::execute(int inputFile, int outputFile)
 {
-	if(right->getFilename() == nullptr)
-	{
-		std::cout << "Error: expected filename\n";
-		return false;
-	}
+    if(right->getFilename() == nullptr)
+    {
+        std::cout << "Error: expected filename\n";
+        return false;
+    }
     inputFile = open( right->getFilename() ,O_RDONLY);
-     return left->execute(inputFile,outputFile);
+    return left->execute(inputFile,outputFile);
 
 }

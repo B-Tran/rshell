@@ -186,8 +186,8 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
 
         //if there are special cases
         if(tokenList.size() >= 2 && ((tokenList.at(0) == "]" &&
-                 tokenList.at(1) == " ]" ) || (tokenList.at(0) == "[ " &&
-                                               tokenList.at(1) == "]")))
+                                      tokenList.at(1) == " ]" ) || (tokenList.at(0) == "[ " &&
+                                                                    tokenList.at(1) == "]")))
         {
             if(tokenList.at(0) == "[ ")
             {
@@ -511,7 +511,7 @@ Connector *CMDTranslator::make_connector(const std::string & token)
         std::cout << "making OutputRed!\n";
         newConnector = new OutputRedirection();
     }
-     else if (token == connectors.at(6))
+    else if (token == connectors.at(6))
     {
         std::cout << "making DoubleOutputRed!\n";
         newConnector = new DoubleOutputRed();
