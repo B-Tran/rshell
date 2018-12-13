@@ -25,7 +25,7 @@ As the following diagram demonstrates:
 
 ## UML Diagram 
 
-![assignment 3](https://user-images.githubusercontent.com/43591097/49252229-4cb1b400-f3d8-11e8-8ad7-cdd03313c0c6.png)
+![assignment 4](https://user-images.githubusercontent.com/43591097/49968782-b30bfb80-fedb-11e8-9993-4de9948ea94c.png)
 
  
 ## Known Bugs
