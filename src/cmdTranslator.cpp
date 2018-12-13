@@ -24,9 +24,9 @@ CMDTranslator::CMDTranslator()
     precedenceMap["||"] = 3;
     precedenceMap[";"] = 3;
     precedenceMap["|"] = 4;
-    precedenceMap["<"] = 3;
-    precedenceMap[">"] = 3;
-    precedenceMap[">>"] = 3;
+    precedenceMap["<"] = 4;
+    precedenceMap[">"] = 4;
+    precedenceMap[">>"] = 4;
 }
 
 CMDTranslator::~CMDTranslator()

@@ -1,8 +1,9 @@
 #include "TestCmd.h"
 #include <algorithm>
-
+#include <cstring>
 TestCmd::TestCmd()
 {
+
 }
 TestCmd::TestCmd(std::vector<std::string> arugmentListVector)
 {
