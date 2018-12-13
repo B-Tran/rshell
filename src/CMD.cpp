@@ -57,7 +57,14 @@ void CMD::addArguments(std::vector<std::string> theArugments)
 }
 char* CMD::getFilename()
 {
-    return argumentList[0];
+    if(argumentCount-1 == 1)
+    {
+        return argumentList[0];
+    }
+    else
+    {
+        return nullptr;
+    }
 }
 // int CMD::getFilenameNumber()
 // {

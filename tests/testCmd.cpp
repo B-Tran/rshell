@@ -25,7 +25,7 @@ TEST(TESTCMDCLASS, NOFlagTest1)
 
    TestCmd testCommand(theNoFlagTest1);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 TEST(TESTCMDCLASS, NOFlagTest2)
 {
@@ -36,7 +36,7 @@ TEST(TESTCMDCLASS, NOFlagTest2)
 
    TestCmd testCommand(theNoFlagTest2);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 
 TEST(TESTCMDCLASS, EFlagTest1)
@@ -49,7 +49,7 @@ TEST(TESTCMDCLASS, EFlagTest1)
 
    TestCmd testCommand(theEFlagTest1);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 TEST(TESTCMDCLASS, EFlagTest2)
 {
@@ -61,7 +61,7 @@ TEST(TESTCMDCLASS, EFlagTest2)
 
    TestCmd testCommand(theEFlagTest2);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 TEST(TESTCMDCLASS, DirectoryFlagTest)
 {
@@ -72,7 +72,7 @@ TEST(TESTCMDCLASS, DirectoryFlagTest)
 
    TestCmd testCommand(theDirectoryTest);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 TEST(TESTCMDCLASS, FileFlagTest)
 {
@@ -83,7 +83,7 @@ TEST(TESTCMDCLASS, FileFlagTest)
 
    TestCmd testCommand(theTest);
 
-     EXPECT_EQ(testCommand.execute(),1) ;
+     EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 TEST(TESTCMDCLASS, DefaultFlagTest)
 {
@@ -94,7 +94,7 @@ TEST(TESTCMDCLASS, DefaultFlagTest)
 
     TestCmd testCommand(theDefaultFlagTest);
 
-    EXPECT_EQ(testCommand.execute(),1) ;
+    EXPECT_EQ(testCommand.execute(0,1),1) ;
 }
 
 ///Expected Errors////
@@ -107,7 +107,7 @@ TEST(TESTCMDCLASS, InvalidFlagTest1)
 
     TestCmd testCommand(theTest);
 
-    EXPECT_EQ(testCommand.execute(),0) ;
+    EXPECT_EQ(testCommand.execute(0,1),0) ;
 }
 TEST(TESTCMDCLASS, InvaildFlagTest2)
 {
@@ -117,7 +117,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest2)
 
     TestCmd testCommand(theTest);
 
-    EXPECT_EQ(testCommand.execute(),0) ;
+    EXPECT_EQ(testCommand.execute(0,1),0) ;
 }
 TEST(TESTCMDCLASS, InvaildFlagTest3)
 {
@@ -129,7 +129,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest3)
 
     TestCmd testCommand(theTest);
 
-    EXPECT_EQ(testCommand.execute(),0) ;
+    EXPECT_EQ(testCommand.execute(0,1),0) ;
 }
 TEST(TESTCMDCLASS, InvaildFlagTest4)
 {
@@ -141,7 +141,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
     TestCmd testCommand(theTest);
 
-    EXPECT_EQ(testCommand.execute(),0) ;
+    EXPECT_EQ(testCommand.execute(0,1),0) ;
 }
  TEST(TESTCMDCLASS, InvaildFlagTest5)
  {
@@ -151,7 +151,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
      TestCmd testCommand(theTest);
 
-     EXPECT_EQ(testCommand.execute(),0) ;
+     EXPECT_EQ(testCommand.execute(0,1),0) ;
  }
 
  TEST(TESTCMDCLASS, EmptyTest)
@@ -161,7 +161,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
      TestCmd testCommand(theTest);
 
-     EXPECT_EQ(testCommand.execute(),0) ;
+     EXPECT_EQ(testCommand.execute(0,1),0) ;
  }
  TEST(TESTCMDCLASS,AndConnectorFlagTest1)
  {
@@ -184,7 +184,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
     And *A = new And(command, command1);
 
      
-     EXPECT_EQ(A->execute(), 1);
+     EXPECT_EQ(A->execute(0,1), 1);
 
  }
  
@@ -208,7 +208,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     And *A = new And(command, command1);
 
-        EXPECT_EQ(A->execute(), 1);
+        EXPECT_EQ(A->execute(0,1), 1);
  
  }
  
@@ -233,7 +233,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     And *A = new And(command, command1);
 
-        EXPECT_EQ(A->execute(), 1);
+        EXPECT_EQ(A->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, AndConnectorFlagTest4)
@@ -256,7 +256,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     And *A = new And(command, command1);
 
-        EXPECT_EQ(A->execute(), 1);
+        EXPECT_EQ(A->execute(0,1), 1);
  
  }
 
@@ -273,7 +273,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
 
      And *A = new And(command, command1);
-     EXPECT_EQ(A->execute(), 1);
+     EXPECT_EQ(A->execute(0,1), 1);
 
  }
 
@@ -289,7 +289,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
 
      And *A = new And(command, command1);
-     EXPECT_EQ(A->execute(), 1);
+     EXPECT_EQ(A->execute(0,1), 1);
 
  }
 
@@ -313,7 +313,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 1);
+        EXPECT_EQ(B->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, OrConnectorFlagTest2)
@@ -336,7 +336,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 1);
+        EXPECT_EQ(B->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, OrConnectorFlagTest3)
@@ -359,7 +359,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 1);
+        EXPECT_EQ(B->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, OrConnectorFlagTest4)
@@ -382,7 +382,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 1);
+        EXPECT_EQ(B->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, InvalidConnectorFlagTest1)
@@ -405,7 +405,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     And *A = new And(command, command1);
 
-        EXPECT_EQ(A->execute(), 0);
+        EXPECT_EQ(A->execute(0,1), 0);
  
  }
  TEST(TESTCMDCLASS, InvalidConnectorFlagTest2)
@@ -428,7 +428,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 0);
+        EXPECT_EQ(B->execute(0,1), 0);
  
  }
  TEST(TESTCMDCLASS, InvalidConnectorFlagTest3)
@@ -451,7 +451,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 0);
+        EXPECT_EQ(B->execute(0,1), 0);
  
  }
  TEST(TESTCMDCLASS, DefaultConnectorFlagTest1)
@@ -475,7 +475,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     And *A = new And(command, command1);
 
-        EXPECT_EQ(A->execute(), 1);
+        EXPECT_EQ(A->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, DefaultConnectorFlagTest2)
@@ -497,7 +497,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     Or *B = new Or(command, command1);
 
-        EXPECT_EQ(B->execute(), 1);
+        EXPECT_EQ(B->execute(0,1), 1);
  
  }
  TEST(TESTCMDCLASS, EmptyConnectorFlagTest)
@@ -517,7 +517,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
   
     And *A = new And(command, command1);
 
-        EXPECT_EQ(A->execute(), 0);
+        EXPECT_EQ(A->execute(0,1), 0);
  
  }
 
@@ -531,7 +531,7 @@ TEST(TESTCMDCLASS, InvaildFlagTest4)
 
     CMDLine *command = new TestCmd(theTest);
 
-    EXPECT_THROW(command->execute(), std::string  );
+    EXPECT_THROW(command->execute(0,1), std::string  );
 
 
  }
