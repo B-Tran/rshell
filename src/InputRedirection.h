@@ -18,7 +18,7 @@ class InputRedirection : public Connector
   ~InputRedirection();
   bool execute(int inputFile, int outputFile);
   char* getFilename();
-
+  bool is_a_input();
 };
 
 

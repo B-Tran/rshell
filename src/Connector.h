@@ -9,6 +9,7 @@ class Connector : public CMDLine
 protected:
 	CMDLine *left;
 	CMDLine *right;
+    static bool output_has_started;
 
 public:
 	Connector();

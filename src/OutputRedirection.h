@@ -8,12 +8,15 @@
 
 class OutputRedirection : public Connector
 {
+  private:
+//  static bool has_started;
   public:
   OutputRedirection();
   OutputRedirection(CMDLine* left, CMDLine* right);
   ~OutputRedirection();
   bool execute(int inputFile, int outputFile);
   char* getFilename();
+  bool is_a_output();
 };
 
 

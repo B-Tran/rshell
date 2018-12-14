@@ -1,6 +1,8 @@
 #include "Connector.h"
 #include <cstdlib>
 
+bool Connector::output_has_started = false;
+
 Connector::Connector()
 {
     left = nullptr;

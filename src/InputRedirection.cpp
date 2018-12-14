@@ -28,3 +28,8 @@ bool InputRedirection::execute(int inputFile, int outputFile)
     return left->execute(inputFile,outputFile);
 
 }
+
+bool InputRedirection::is_a_input()
+{
+    return true;
+}
