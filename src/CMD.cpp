@@ -8,7 +8,6 @@ CMD::CMD()
     argumentList = nullptr;
     argumentCount = 0;
 }
-
 CMD::CMD(CMDLine *commandArg)
 {
     this->commandArg = commandArg;
@@ -56,21 +55,59 @@ void CMD::addArguments(std::vector<std::string> theArugments)
     argumentList[theArugments.size()] = nullptr;
 
 }
-bool CMD::execute()
+char* CMD::getFilename()
+{
+    if(argumentCount-1 == 1)
+    {
+        return argumentList[0];
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+// int CMD::getFilenameNumber()
+// {
+//   return 0;
+// }
+
+bool CMD::execute(int inputFile, int outputFile)
 {  
 
     bool theExecuted = true;
+
+
+    //  std::cout << " CMD in : " << inputFile << std::endl;
+    //    std::cout << "CMD out : " << outputFile << std::endl;
+
     // Create a child process of datatype of process id
     pid_t pid = fork();
+
+    //   std::cout << "here"  << std::endl;
     int status = 0;
     if (pid == 0)
     {
+
+        if(dup2(inputFile,0) == -1)
+        {
+            perror("dup2");
+            _exit(69);
+
+        }
+        if(dup2(outputFile,1) == -1)
+        {
+            perror("dup2");
+            _exit(69);
+
+        }
+
         if (execvp(argumentList[0], argumentList) == -1)
         {
             perror("Command not found");
             //kill the function if the child fails
             _exit(69);
         }
+
     }
     else if (pid == -1) // if fork fails
     {

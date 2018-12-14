@@ -18,7 +18,8 @@ class TestCmd: public CMDLine
      TestCmd();
      TestCmd(std::vector<std::string> arugmentListVector);
      ~TestCmd();
-     bool execute();
+     bool execute(int inputFile, int outputFile);
+     char* getFilename();
 
   private:
   std::vector<CMDLine*> commandLine;

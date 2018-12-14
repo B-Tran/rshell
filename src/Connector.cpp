@@ -22,6 +22,3 @@ void Connector::setRight(CMDLine *right)
 {
     this->right = right;
 }
-bool Connector::execute()
-{
-}

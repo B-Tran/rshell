@@ -9,7 +9,8 @@ class Exit : public CMD
 public:
 	Exit();
 	~Exit();
-	bool execute();
+	bool execute(int inputFile, int outputFile);
+	char* getFilename();
 };
 
 #endif

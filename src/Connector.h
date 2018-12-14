@@ -14,9 +14,10 @@ public:
 	Connector();
 	Connector(CMDLine *left, CMDLine *right);
 	~Connector();
-	virtual bool execute() = 0;
+	virtual bool execute(int inputFile, int outputFile) = 0;
 	void setLeft(CMDLine *left);
 	void setRight(CMDLine *right);
+	virtual char* getFilename() = 0;
 };
 
 #endif

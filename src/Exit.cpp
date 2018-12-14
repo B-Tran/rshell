@@ -6,7 +6,11 @@ Exit::Exit()
 Exit::~Exit()
 {
 }
-bool Exit::execute()
+char* Exit::getFilename()
+{
+    return nullptr;
+}
+bool Exit::execute(int inputFile, int outputFile)
 {
     exit(0);
 }

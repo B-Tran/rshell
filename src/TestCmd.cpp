@@ -1,8 +1,9 @@
 #include "TestCmd.h"
 #include <algorithm>
-
+#include <cstring>
 TestCmd::TestCmd()
 {
+
 }
 TestCmd::TestCmd(std::vector<std::string> arugmentListVector)
 {
@@ -11,7 +12,12 @@ TestCmd::TestCmd(std::vector<std::string> arugmentListVector)
 TestCmd::~TestCmd()
 {
 }
-bool TestCmd::execute()
+char* TestCmd::getFilename()
+{
+    return nullptr;
+}
+
+bool TestCmd::execute(int inputFile, int outputFile)
 {
 
     // int stat(const char *path, struct stat *buf);
@@ -24,7 +30,7 @@ bool TestCmd::execute()
     //On error, -1 is returned, and errno is set appropriately.
 
     struct stat statBuffer; //A pointer to a buffer where the function can
-                            // store the information
+    // store the information
     
     bool flagExist = false;
     bool toExecuted = false;
@@ -145,7 +151,7 @@ bool TestCmd::execute()
     flagTestPath = nullptr;
     return toExecuted;
 }
-   
-     // test is an object 
-     // no flag is vector size is one 
-     // flag is vector size is two
+
+// test is an object
+// no flag is vector size is one
+// flag is vector size is two

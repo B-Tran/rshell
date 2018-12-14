@@ -19,7 +19,7 @@ TEST(CMDTEST, OneCommand)
     std::vector<std::string> arguement;
     arguement.push_back("ls");
     CMD *command = new CMD(arguement);
-    EXPECT_EQ(command->execute(), 1);
+    EXPECT_EQ(command->execute(0,1), 1);
 }
 
 TEST(CMDTEST, OneCommandOneArg)
@@ -28,7 +28,7 @@ TEST(CMDTEST, OneCommandOneArg)
     arguement.push_back("ls");
     arguement.push_back("-a");
     CMD *command = new CMD(arguement);
-    EXPECT_EQ(command->execute(), 1);
+    EXPECT_EQ(command->execute(0,1), 1);
 }
 
 TEST(CMDTEST, semicolon_connector)
@@ -42,7 +42,7 @@ TEST(CMDTEST, semicolon_connector)
     arguement2.push_back("hello");
     CMD *command2 = new CMD(arguement2);
     Semicolon *S = new Semicolon(command, command2);
-    EXPECT_EQ(S->execute(), 1);
+    EXPECT_EQ(S->execute(0,1), 1);
 }
 
 TEST(CMDTEST, and_connector)
@@ -64,7 +64,7 @@ TEST(CMDTEST, and_connector)
 
     Semicolon *S = new Semicolon(command, command2);
     And *A = new And(S, command3);
-    EXPECT_EQ(A->execute(), 1);
+    EXPECT_EQ(A->execute(0,1), 1);
 }
 
 TEST(CMDTEST, or_connector)
@@ -93,7 +93,7 @@ TEST(CMDTEST, or_connector)
     And *A = new And(S, command3);
     Or *O = new Or(A, command4);
 
-    EXPECT_EQ(O->execute(), 1);
+    EXPECT_EQ(O->execute(0,1), 1);
 }
 
 TEST(CMDTEST, semicolon_connector2)
@@ -128,7 +128,7 @@ TEST(CMDTEST, semicolon_connector2)
     Or *O = new Or(A, command4);
     Semicolon *S2 = new Semicolon(O, command5);
 
-    EXPECT_EQ(S2->execute(), 1);
+    EXPECT_EQ(S2->execute(0,1), 1);
 }
 
 TEST(CMDTEST, one_command_no_argument)
@@ -136,7 +136,7 @@ TEST(CMDTEST, one_command_no_argument)
     std::vector<std::string> argument;
     CMD *command = new CMD(argument);
 
-    EXPECT_EQ(command->execute(), 1);
+    EXPECT_EQ(command->execute(0,1), 1);
 }
 
 TEST(CMDTEST, one_command_bad_argument)
@@ -144,7 +144,7 @@ TEST(CMDTEST, one_command_bad_argument)
     std::vector<std::string> arguement;
     arguement.push_back("invalid");
     CMD *command = new CMD(arguement);
-    EXPECT_EQ(command->execute(), 0);
+    EXPECT_EQ(command->execute(0,1), 0);
 }
 
 TEST(CMDTEST, semicolon_connector_bad_argument)
@@ -158,7 +158,7 @@ TEST(CMDTEST, semicolon_connector_bad_argument)
     arguement2.push_back("hello");
     CMD *command2 = new CMD(arguement2);
     Semicolon *S = new Semicolon(command, command2);
-    EXPECT_EQ(S->execute(), 0);
+    EXPECT_EQ(S->execute(0,1), 0);
 }
 
 TEST(CMDTEST, and_connector_bad_argument)
@@ -180,7 +180,7 @@ TEST(CMDTEST, and_connector_bad_argument)
 
     Semicolon *S = new Semicolon(command, command2);
     And *A = new And(S, command3);
-    EXPECT_EQ(A->execute(), 0);
+    EXPECT_EQ(A->execute(0,1), 0);
 }
 
 TEST(CMDTEST, or_connector_bad_arguement)
@@ -209,5 +209,5 @@ TEST(CMDTEST, or_connector_bad_arguement)
     And *A = new And(S, command3);
     Or *O = new Or(A, command4);
 
-    EXPECT_EQ(O->execute(), 1);
+    EXPECT_EQ(O->execute(0,1), 1);
 }

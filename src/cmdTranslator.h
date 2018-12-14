@@ -24,7 +24,7 @@ class CMDTranslator
 	//makes a CMD object
 	CMD *make_CMD(std::vector<std::string> &tokenList);
 	//making the connector object
-	Connector *make_connector(std::vector<std::string> &tokenList);
+//	Connector *make_connector(std::vector<std::string> &tokenList);
 	//checks if the token is a connector
 	bool is_Connector(const std::string &item);
 
@@ -83,6 +83,7 @@ class CMDTranslator
 	//returns a nullptr if
 	CMDLine *translate(std::vector<std::string> tokenList,
 					   std::vector<CMDLine *> &returnList);
+
 };
 
 #endif

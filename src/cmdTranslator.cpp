@@ -3,6 +3,10 @@
 #include "And.h"
 #include "Or.h"
 #include "Semicolon.h"
+#include "Pipe.h"
+#include "InputRedirection.h"
+#include "OutputRedirection.h"
+#include "DoubleOutputRed.h"
 #include <cstdlib>
 #include <algorithm>
 
@@ -11,9 +15,18 @@ CMDTranslator::CMDTranslator()
     connectors.push_back("&&");
     connectors.push_back("||");
     connectors.push_back(";");
+    connectors.push_back("|");
+    connectors.push_back("<");
+    connectors.push_back(">");
+    connectors.push_back(">>");
+
     precedenceMap["&&"] = 3;
     precedenceMap["||"] = 3;
     precedenceMap[";"] = 3;
+    precedenceMap["|"] = 4;
+    precedenceMap["<"] = 4;
+    precedenceMap[">"] = 4;
+    precedenceMap[">>"] = 4;
 }
 
 CMDTranslator::~CMDTranslator()
@@ -82,25 +95,33 @@ CMD *CMDTranslator::make_CMD(std::vector<std::string> &tokenList)
     return cmd;
 }
 
-Connector *CMDTranslator::make_connector(std::vector<std::string> &tokenList)
-{
-    Connector *newConnector = nullptr;
-    if (tokenList.front() == connectors.at(0))
-    {
-        newConnector = new And();
-    }
-    else if (tokenList.front() == connectors.at(1))
-    {
-        newConnector = new Or();
-    }
-    else
-    {
-        newConnector = new Semicolon();
-    }
+// Connector *CMDTranslator::make_connector(std::vector<std::string> &tokenList)
+// {
+//     Connector *newConnector = nullptr;
+//     if (tokenList.front() == connectors.at(0))
+//     {
+//         std::cout << "making and!\n";
+//         newConnector = new And();
+//     }
+//     else if (tokenList.front() == connectors.at(1))
+//     {
+//         std::cout << "making or!\n";
+//         newConnector = new Or();
+//     }
+//     // else if (tokenList.front() == connectors.at(3))
+//     // {
+//     //     std::cout << "making pipe!\n";
+//     //     newConnector = new Pipe();
+//     // }
+//     else
+//     {
+//         std::cout << "making semicolon\n";
+//         newConnector = new Semicolon();
+//     }
 
-    tokenList.erase(tokenList.begin());
-    return newConnector;
-}
+//     tokenList.erase(tokenList.begin());
+//     return newConnector;
+// }
 
 bool CMDTranslator::is_Connector(const std::string &item)
 {
@@ -165,8 +186,8 @@ TestCmd *CMDTranslator::make_Test(std::vector<std::string> &tokenList)
 
         //if there are special cases
         if(tokenList.size() >= 2 && ((tokenList.at(0) == "]" &&
-                 tokenList.at(1) == " ]" ) || (tokenList.at(0) == "[ " &&
-                                               tokenList.at(1) == "]")))
+                                      tokenList.at(1) == " ]" ) || (tokenList.at(0) == "[ " &&
+                                                                    tokenList.at(1) == "]")))
         {
             if(tokenList.at(0) == "[ ")
             {
@@ -471,10 +492,31 @@ Connector *CMDTranslator::make_connector(const std::string & token)
     {
         newConnector = new Or();
     }
-    else
+    else if(token == connectors.at(2))
     {
         newConnector = new Semicolon();
     }
+    else if (token == connectors.at(3))
+    {
+//        std::cout << "making pipe!\n";
+        newConnector = new Pipe();
+    }
+    else if (token == connectors.at(4))
+    {
+//        std::cout << "making InputRed!\n";
+        newConnector = new InputRedirection();
+    }
+    else if (token == connectors.at(5))
+    {
+//        std::cout << "making OutputRed!\n";
+        newConnector = new OutputRedirection();
+    }
+    else if (token == connectors.at(6))
+    {
+//        std::cout << "making DoubleOutputRed!\n";
+        newConnector = new DoubleOutputRed();
+    }
+
 
     return newConnector;
 }

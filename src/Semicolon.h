@@ -9,7 +9,8 @@ public:
   Semicolon();
   Semicolon(CMDLine *left, CMDLine *right);
   ~Semicolon();
-  bool execute();
+  bool execute(int inputFile, int outputFile);
+  char* getFilename();
 };
 
 #endif

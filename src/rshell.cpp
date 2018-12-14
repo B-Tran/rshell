@@ -21,9 +21,14 @@ int main()
     dList.push_back(")");
     dList.push_back("[ ");
     dList.push_back(" ]");
+    dList.push_back("|");
+    dList.push_back("<");
+    dList.push_back(">");
+    dList.push_back(">>");
     dIList.push_back(" ");
     limiters.push_back("\"");
     limiters.push_back("\'");
+
     StringParser parsing(dList, dIList, limiters);
     std::string input;
     std::vector<std::string> tokens;
@@ -33,7 +38,10 @@ int main()
     char theHost[HOST_NAME_MAX]; // HOST_NAME_MAX is a predefined value
     //defined in limits.h
     bool run = true;
-      
+
+    const int theInput = 0 ;
+    const int theOutput = 1;
+
     // try to getlogin() //returns a pointer to the username when successful,
     //and NULL on failure
     if (getlogin() == NULL)
@@ -58,14 +66,14 @@ int main()
                 std::cout << theLogin << "@" << theHost << "$ ";
                 getline(std::cin, input);
                 tokens = parsing.parse_string(input);
-           
+
                 CMDLine *toExecute = NULL;
                 CMDTranslator translator;
                 toExecute = translator.translate(tokens, allocatedCommands);
 
                 if (toExecute)
-                { 
-                    toExecute->execute();
+                {
+                    toExecute->execute(theInput,theOutput);
                 }
                 else
                 {

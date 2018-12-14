@@ -7,7 +7,8 @@ class CMDLine
 public:
   CMDLine();
   virtual ~CMDLine() = 0;
-  virtual bool execute() = 0;
+  virtual bool execute(int inputFile, int outputFile) = 0;
+  virtual char* getFilename() = 0;
 };
 
 #endif

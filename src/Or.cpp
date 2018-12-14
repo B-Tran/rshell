@@ -13,13 +13,17 @@ Or::Or(CMDLine *left, CMDLine *right) : Connector(left, right)
 Or::~Or()
 {
 }
-bool Or::execute()
+char* Or::getFilename()
 {
-    if (!right) // if there is no right base pointer 
+    return nullptr;
+}
+bool Or::execute(int inputFile, int outputFile)
+{
+    if (!right) // if there is no right base pointer
     {
         const std::string error = "Error : -bash: syntax error near "
                                   "unexpected token || \n";
         throw error;
     }
-    return (left->execute() || right->execute());
+    return (left->execute(inputFile,outputFile) || right->execute(inputFile,outputFile));
 }

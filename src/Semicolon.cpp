@@ -11,12 +11,16 @@ Semicolon::Semicolon(CMDLine *left, CMDLine *right) : Connector(left, right)
 Semicolon::~Semicolon()
 {
 }
-bool Semicolon::execute()
+char* Semicolon::getFilename()
 {
-    left->execute(); 
+    return nullptr;
+}
+bool Semicolon::execute(int inputFile, int outputFile)
+{
+    left->execute(inputFile,outputFile);
     if (right)  // if the right base pointer exist
     {
-        return right->execute();
+        return right->execute(inputFile,outputFile);
     }
     else
     {

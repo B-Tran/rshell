@@ -10,7 +10,7 @@ std::string StringParser::get_token(std::string &input)
     for (size_t i = 0; i < delimList.size(); ++i)
     {
         if ((input.find(delimList.at(i)) < input.size()) &&
-            (input.find(delimList.at(i)) < pos))
+                (input.find(delimList.at(i)) < pos))
         {
             pos = input.find(delimList.at(i));
         }
@@ -66,7 +66,7 @@ std::string StringParser::get_literal(std::string &input)
     size_t pos = found_begin_literal(input);
     size_t ending;
     std::string token;
-//    std::cout << "here!";
+    //    std::cout << "here!";
     if ((ending = input.find(literalList.at(pos), 1)) < input.size())
     {
         //if the ending literal is found with a space at the end or is the
@@ -97,18 +97,18 @@ size_t StringParser::found_begin_delim(const std::string &input)
 
     for (size_t i = 0; i < delimList.size(); ++i)
     {
-//        std::cout << "checking for finding: " <<
-//        (input.find(delimList.at(i))) << "\n";
+        //        std::cout << "checking for finding: " <<
+        //        (input.find(delimList.at(i))) << "\n";
         if(input.find(delimList.at(i)) == 0 && ((pos < delimList.size() &&
-        delimList.at(pos).size() < delimList.at(i).size()) ||
+                                                 delimList.at(pos).size() < delimList.at(i).size()) ||
                                                 pos == delimList.size()))
         {
-//            std::cout << "found delim: " << i << "\n";
+            //            std::cout << "found delim: " << i << "\n";
             //if a delimiter was found before but it is smaller in size
             // than that of the current one being checked
             //or that the delimiter had not been found
             //then set update the pos value
-             pos = i;
+            pos = i;
         }
     }
 
@@ -182,7 +182,7 @@ std::vector<std::string> StringParser::parse_string(std::string input)
     while (!input.empty())
     {
         //if there is a literal at the beginning
-//        std::cout <<"here at beginning of parsing loop!\n";
+        //        std::cout <<"here at beginning of parsing loop!\n";
         if (found_begin_literal(input) < literalList.size())
         {
             token = get_literal(input);
