@@ -2,7 +2,7 @@
 
 Pipe::Pipe()
 {
-    std::cout << "pipe constructor\n";
+//    std::cout << "pipe constructor\n";
 }
 Pipe::Pipe(CMDLine *left, CMDLine *right) : Connector(left,right)
 {

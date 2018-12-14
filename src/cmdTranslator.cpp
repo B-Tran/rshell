@@ -498,22 +498,22 @@ Connector *CMDTranslator::make_connector(const std::string & token)
     }
     else if (token == connectors.at(3))
     {
-        std::cout << "making pipe!\n";
+//        std::cout << "making pipe!\n";
         newConnector = new Pipe();
     }
     else if (token == connectors.at(4))
     {
-        std::cout << "making InputRed!\n";
+//        std::cout << "making InputRed!\n";
         newConnector = new InputRedirection();
     }
     else if (token == connectors.at(5))
     {
-        std::cout << "making OutputRed!\n";
+//        std::cout << "making OutputRed!\n";
         newConnector = new OutputRedirection();
     }
     else if (token == connectors.at(6))
     {
-        std::cout << "making DoubleOutputRed!\n";
+//        std::cout << "making DoubleOutputRed!\n";
         newConnector = new DoubleOutputRed();
     }
 
