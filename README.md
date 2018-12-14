@@ -46,6 +46,11 @@ There were several problems we encountered  in the command input
 
 7. Error with brackets when used in some situations  
 
+8. May not work with multiple output redirecctors(>> and >)
+
+9. Does not work properly with multiple input redirectors(<)
+
+10. Output redirection functions create files unconditionally
 
 ## Authors & Contributor List
 
